@@ -1,7 +1,7 @@
 // const {app, BrowserWindow} = require('electron')
 import { app, BrowserWindow } from 'electron'
-// import path from 'path';
-// import os from 'os';
+import path from 'path';
+import os from 'os';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,8 +17,6 @@ function createWindow () {
     }
   })
 
-  console.log(process.env.NODE_ENV)
-
   // and load the index.html of the app.
   // mainWindow.loadFile('index.html')
   mainWindow.loadURL('http://localhost:3000')
@@ -26,10 +24,10 @@ function createWindow () {
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
-  // BrowserWindow.addDevToolsExtension(
-  //   // C:\Users\chenhao\AppData\Local\Google\Chrome\User Data\Default\Extensions\
-  //   path.join(os.homedir(), '/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
-  // )
+  BrowserWindow.addDevToolsExtension(
+    // C:\Users\chenhao\AppData\Local\Google\Chrome\User Data\Default\Extensions\
+    path.join(os.homedir(), '/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
+  )
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

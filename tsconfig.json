@@ -12,11 +12,10 @@
     "module": "commonjs",
     "strict": true,
     "jsx": "react",
-    "outDir": "dist",
+    "outDir": "public",
   },
   "include": [
-    "main",
-    "src"
+    "main"
   ],
   "exclude": [
     "node_modules",

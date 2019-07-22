@@ -2,7 +2,7 @@
   "name": "electron-music-app",
   "version": "1.0.0",
   "description": "react&electron构建网易云音乐",
-  "main": "./dist/main.js",
+  "main": "./public/main.js",
   "license": "MIT",
   "author": {
     "name": "RookieHao",
@@ -24,7 +24,12 @@
     "dev": "npm run run:render",
     "run:main": "tsc && electron .",
     "run:render": "cross-env NODE_ENV=development DEBUG=true webpack-dev-server --color --progress --config  ./config/webpack.render.dev.config.js",
-    "build": " cross-env NODE_ENV=production "
+    "build:render": "cross-env NODE_ENV=production DEBUG=false webpack --color --progress --config ./config/webpack.render.prod.config.js",
+    "build": "concurrently \"npm run build:render\" \" electron-builder -p nerver \" ",
+    "build-win": "rimraf ./dist && concurrently \"npm run build:render\" \"electron-builder -w --x64\" ",
+    "build-linux": "npm run build:render && electron-builder -l",
+    "build-mac": "npm run build:render && electron-builder -m",
+    "build-all": "npm run build:render && electron-builder -mwl"
   },
   "homepage": "https://github.com/RookieHao/electron-music-app.git",
   "devDependencies": {
@@ -46,6 +51,7 @@
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^4.1.1",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
@@ -104,5 +110,40 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "build": {
+    "productName": "electron-music-app",
+    "appId": "chenhao2009_219@126.com",
+    "copyright": "Copyright © 2019 ChenHao",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
+  }
 }
