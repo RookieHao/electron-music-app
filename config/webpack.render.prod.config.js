@@ -1,17 +1,17 @@
 const { EnvironmentPlugin } = require('webpack');
 const { resolve } = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const merge = require('webpack-merge');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.render.base.config');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports= merge(common, {
   mode: "production",
   devtool: "cheap-module-source-map",
   output: {
-    path: resolve(__dirname,"../dist"),
-    publicPath: "/",
-    filename: "[name]-[chunkhash].js",
+    path: resolve(__dirname,"../dist/render"),
+    publicPath: "./",
+    filename: "render.prod.js",
     chunkFilename: "[name]-[id].js"
   },
   // externals: {
@@ -19,13 +19,14 @@ module.exports= merge(common, {
   //   "react-dom": "ReactDOM"
   // },
   plugins:[
-    // new CleanWebpackPlugin(),
     new EnvironmentPlugin({
-      NODE_ENV: 'production'
+      NODE_ENV:'production',
+      DEBUG:false
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode:'server',
-      openAnalyzer: true
-    })
+    // new CleanWebpackPlugin(),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode:'server',
+    //   openAnalyzer: true
+    // })
   ]
 });

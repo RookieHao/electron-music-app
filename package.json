@@ -2,7 +2,7 @@
   "name": "electron-music-app",
   "version": "1.0.0",
   "description": "react&electron构建网易云音乐",
-  "main": "./public/main.js",
+  "main": "dist/main/main.js",
   "license": "MIT",
   "author": {
     "name": "RookieHao",
@@ -20,16 +20,18 @@
     "redux"
   ],
   "scripts": {
-    "start": "npm run run:render",
+    "start": "npm run dev",
     "dev": "npm run run:render",
-    "run:main": "tsc && electron .",
-    "run:render": "cross-env NODE_ENV=development DEBUG=true webpack-dev-server --color --progress --config  ./config/webpack.render.dev.config.js",
-    "build:render": "cross-env NODE_ENV=production DEBUG=false webpack --color --progress --config ./config/webpack.render.prod.config.js",
-    "build": "concurrently \"npm run build:render\" \" electron-builder -p nerver \" ",
-    "build-win": "rimraf ./dist && concurrently \"npm run build:render\" \"electron-builder -w --x64\" ",
-    "build-linux": "npm run build:render && electron-builder -l",
-    "build-mac": "npm run build:render && electron-builder -m",
-    "build-all": "npm run build:render && electron-builder -mwl"
+    "run:main":"tsc && electron .",
+    "run:render": "cross-env NODE_ENV=development webpack-dev-server --color --progress --config  ./config/webpack.render.dev.config.js",
+    "build:main": "tsc",
+    "build:render": "cross-env NODE_ENV=production webpack --color --progress --config ./config/webpack.render.prod.config.js",
+    "prebuild":"rimraf dist && npm run build:main && npm run build:render ",
+    "build": "electron-builder --publish never",
+    "build-win": "npm run prebuild && electron-builder -w --x64 ",
+    "build-linux": "npm run prebuild && electron-builder -l",
+    "build-mac": "npm run prebuild && electron-builder -m",
+    "build-all": "npm run prebuild && electron-builder -mwl"
   },
   "homepage": "https://github.com/RookieHao/electron-music-app.git",
   "devDependencies": {
@@ -116,10 +118,18 @@
     "appId": "chenhao2009_219@126.com",
     "copyright": "Copyright © 2019 ChenHao",
     "directories": {
-      "output": "build"
+      "output": "dist/application"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false
     },
     "files": [
-      "dist/electron*"
+      "dist/main",
+      "dist/render"
     ],
     "dmg": {
       "contents": [
@@ -136,14 +146,11 @@
         }
       ]
     },
-    "mac": {
-      "icon": "build/icons/icon.icns"
-    },
-    "win": {
-      "icon": "build/icons/icon.ico"
-    },
-    "linux": {
-      "icon": "build/icons"
-    }
+    "publish": [
+      {
+        "provider": "github",
+        "url": "https://github.com/RookieHao/electron-music-app.git"
+      }
+    ]
   }
 }

@@ -12,7 +12,7 @@
     "module": "commonjs",
     "strict": true,
     "jsx": "react",
-    "outDir": "public",
+    "outDir": "dist/main",
   },
   "include": [
     "main"

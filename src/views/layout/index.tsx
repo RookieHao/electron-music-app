@@ -22,6 +22,8 @@ export default class LayOut extends Component {
     }
   }
   componentDidMount(){
+    console.log(process)
+    console.log(process.env)
     this.timer = setInterval(()=>{
       this.setState({
         time :new Date()

@@ -2,6 +2,8 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path';
 import os from 'os';
+import { format as formatUrl } from 'url'
+const DEBUG: boolean = process.env.DEBUG === 'true'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,16 +21,25 @@ function createWindow () {
 
   // and load the index.html of the app.
   // mainWindow.loadFile('index.html')
-  mainWindow.loadURL('http://localhost:3000')
+  if (DEBUG) {
+    mainWindow.loadURL(`http://localhost:3000`)
+  } else {
+    mainWindow.loadURL(formatUrl({
+      pathname: path.resolve(__dirname, '../render/index.html'),
+      protocol: 'file',
+      slashes: true
+    }))
+  }
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
-
-  BrowserWindow.addDevToolsExtension(
-    // C:\Users\chenhao\AppData\Local\Google\Chrome\User Data\Default\Extensions\
-    path.join(os.homedir(), '/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
-  )
-
+  if(DEBUG){
+    
+    BrowserWindow.addDevToolsExtension(
+      // C:\Users\chenhao\AppData\Local\Google\Chrome\User Data\Default\Extensions\
+      path.join(os.homedir(), '/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
+    )
+  }
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
