@@ -22,11 +22,11 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "npm run run:render",
-    "run:main":"tsc && electron .",
+    "run:main": "tsc && electron .",
     "run:render": "cross-env NODE_ENV=development webpack-dev-server --color --progress --config  ./config/webpack.render.dev.config.js",
     "build:main": "tsc",
     "build:render": "cross-env NODE_ENV=production webpack --color --progress --config ./config/webpack.render.prod.config.js",
-    "prebuild":"rimraf dist && npm run build:main && npm run build:render ",
+    "prebuild": "rimraf dist && npm run build:main && npm run build:render ",
     "build": "electron-builder --publish never",
     "build-win": "npm run prebuild && electron-builder -w --x64 ",
     "build-linux": "npm run prebuild && electron-builder -l",
@@ -43,6 +43,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.5.5",
+    "@types/electron-devtools-installer": "^2.2.0",
     "@types/friendly-errors-webpack-plugin": "^0.1.2",
     "@types/html-webpack-plugin": "^3.2.1",
     "@types/mini-css-extract-plugin": "^0.2.1",
@@ -53,14 +54,13 @@
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.5",
-    "clean-webpack-plugin": "^3.0.0",
-    "concurrently": "^4.1.1",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "css-modules-typescript-loader": "^2.0.4",
     "cssnano": "^4.1.10",
     "electron": "^5.0.7",
     "electron-builder": "^21.1.1",
+    "electron-devtools-installer": "^2.2.4",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
@@ -93,6 +93,8 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "electron-log": "^3.0.6",
+    "electron-updater": "^4.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"
@@ -103,7 +105,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "src/**/*.{ts,js,jsx,tsx}": [
       "eslint --fix",
       "git add"
     ]
@@ -118,6 +120,7 @@
     "appId": "chenhao2009_219@126.com",
     "copyright": "Copyright © 2019 ChenHao",
     "directories": {
+      "buildResources": "public/resources",
       "output": "dist/application"
     },
     "nsis": {
@@ -125,26 +128,47 @@
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": false,
-      "createStartMenuShortcut": false
+      "createStartMenuShortcut": false,
+      "uninstallDisplayName": "${productName} ${version}"
     },
     "files": [
       "dist/main",
-      "dist/render"
+      "dist/render",
+      "package.json"
     ],
     "dmg": {
       "contents": [
         {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
+          "x": 130,
+          "y": 220
         },
         {
-          "x": 130,
-          "y": 150,
-          "type": "file"
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
         }
       ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ],
+      "category": "Development"
     },
     "publish": [
       {

@@ -2,8 +2,7 @@ const { EnvironmentPlugin } = require('webpack');
 const { resolve } = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.render.base.config');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports= merge(common, {
   mode: "production",
@@ -23,10 +22,9 @@ module.exports= merge(common, {
       NODE_ENV:'production',
       DEBUG:false
     }),
-    // new CleanWebpackPlugin(),
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode:'server',
-    //   openAnalyzer: true
-    // })
+    new BundleAnalyzerPlugin({
+      analyzerMode:'static',
+      openAnalyzer: false
+    })
   ]
 });
