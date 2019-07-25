@@ -5,7 +5,7 @@ import log from 'electron-log';
 import path from 'path';
 import { format as formatUrl } from 'url'
 
-const DEBUG: boolean = process.env.DEBUG === 'true'
+const DEBUG: boolean = process.env.NODE_ENV === 'development'
 
 export default class AppUpdater {
   constructor() {
@@ -34,6 +34,18 @@ function createWindow () {
   // mainWindow.loadFile('index.html')
   if (DEBUG) {
     mainWindow.loadURL(`http://localhost:3000`);
+
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
+  
+    const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+  
+    [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach(extension => {
+      installExtension(extension)
+          .then((name:any) => console.log(`Added Extension: ${name}`))
+          .catch((err:any) => console.log('An error occurred: ', err));
+    });
+
   } else {
     mainWindow.loadURL(formatUrl({
       pathname: path.resolve(__dirname, '../render/index.html'),
@@ -42,22 +54,6 @@ function createWindow () {
     }));
   }
 
-  if(DEBUG){
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
-
-    const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-
-    [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach(extension => {
-      installExtension(extension)
-          .then((name:any) => console.log(`Added Extension: ${name}`))
-          .catch((err:any) => console.log('An error occurred: ', err));
-    });
-    // BrowserWindow.addDevToolsExtension(
-    //   // C:\Users\chenhao\AppData\Local\Google\Chrome\User Data\Default\Extensions\
-    //   path.join(os.homedir(), '/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
-    // )
-  }
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows

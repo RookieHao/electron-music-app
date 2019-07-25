@@ -3,10 +3,5 @@
   "env": {
     "browser": true
   },
-  "extends": ["airbnb", "prettier"],
-  "rules": {
-    "react/prop-types": false,
-    "react/destructuring-assignment": false,
-    "react/button-has-type": false
-  }
+  "extends": ["airbnb", "prettier"]
 }

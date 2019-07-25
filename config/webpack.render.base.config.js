@@ -1,11 +1,22 @@
 const { cssLoader, globalCssLoader } = require('./utils');
 const { join, resolve, posix } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+console.log(__dirname)
 module.exports = {
   entry:join(__dirname, "../src", "index.tsx"),
   resolve:{
-    extensions: [".json", ".js", ".jsx", ".tsx"]
+    extensions: [".json", ".js", ".jsx", ".tsx"],
+    alias:{
+      '@': resolve("src"),
+      '@Api': resolve("src/api"),
+      '@Router': resolve("src/router"),
+      '@Utils': resolve("src/utils"),
+      '@Components': resolve("src/components"),
+      '@Store': resolve("src/store"),
+      '@Views': resolve("src/views"),
+      '@Assets': resolve("src/assets")
+    }
   },
   module:{
     rules: [
@@ -71,7 +82,14 @@ module.exports = {
   plugins:[
     new HTMLWebpackPlugin({
       template: resolve(__dirname, "../public/index.html")
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+    // 自动注入模块,不必各处引入
+    // new webpack.ProvidePlugin({
+    //   request: 'utils/request'
+    // }),
   ],
   target:"electron-renderer"
 }
