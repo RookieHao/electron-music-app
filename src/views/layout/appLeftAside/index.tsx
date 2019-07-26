@@ -9,6 +9,7 @@ interface State {
 
 class LeftAside extends Component<RouteComponentProps> {
   state:State
+
   constructor(props: RouteComponentProps){
     super(props)
     this.state = {
@@ -64,31 +65,37 @@ class LeftAside extends Component<RouteComponentProps> {
       activeItemKey:'digital-music'
     }
   }
+
   menuItemClick = key => {
     this.setState({
       activeItemKey:key
     })
     this.props.history.push(key)
   }
+
   generateMenus = ()=>{
-    let { menus,activeItemKey } = this.state;
-    let generateMenuItems = []
+    const { menus,activeItemKey } = this.state;
+    const generateMenuItems = []
     menus.forEach(menu=>{
       generateMenuItems.push(<li key={menu.key} className={LeftAsideStyle['group-title']}>{menu.name}</li>)
       if(menu.items){
         generateMenuItems.push(menu.items.map(item=>{
-          return (<li 
-            key={item.key}
-            className={LeftAsideStyle['menu-item'] + ' ' + (activeItemKey === item.key?LeftAsideStyle['active-item']:LeftAsideStyle['menu-item-normal'])} 
-            onClick = { () => this.menuItemClick(item.key) }>
-            <span>{item.name}</span>
-          </li>)
+          return (
+            <li 
+              key={item.key}
+              className={`${LeftAsideStyle['menu-item']  } ${  activeItemKey === item.key?LeftAsideStyle['active-item']:LeftAsideStyle['menu-item-normal']}`} 
+              onClick={() => this.menuItemClick(item.key)}
+            >
+              <span>{item.name}</span>
+            </li>
+)
         }))
       }
     })
 
     return generateMenuItems
   }
+
   render() {
     return (
       <aside className={LeftAsideStyle['left-aside']}>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import nprogress from 'nprogress'
-let service = axios.create({
+
+const service = axios.create({
   withCredentials:true,
   baseURL:'http://love.moko.org.cn'
 })

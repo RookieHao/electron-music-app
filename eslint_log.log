@@ -1,0 +1,165 @@
+
+F:\electron-music-app\src\api\home.ts
+  1:21  error  Unable to resolve path to module '../utils/request'  import/no-unresolved
+  3:1   error  Prefer default export                                import/prefer-default-export
+
+F:\electron-music-app\src\assets\iconfont\iconfont.css.d.ts
+  14:8  error  Parsing error: Unexpected token, expected "{"
+
+  12 | }
+  13 | declare var cssExports: CssExports;
+> 14 | export = cssExports;
+     |        ^
+  15 |
+
+F:\electron-music-app\src\assets\iconfont\iconfont.js
+  1:1     error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:2     warning  Unexpected unnamed function                                            func-names
+  1:7709  error    Unexpected dangling '_' in '__iconfont__svg__cssinject__'              no-underscore-dangle
+  1:7741  error    Assignment to property of function parameter 'd'                       no-param-reassign
+  1:7741  error    Unexpected dangling '_' in '__iconfont__svg__cssinject__'              no-underscore-dangle
+  1:7932  error    't' is already declared in the upper scope                             no-shadow
+  1:7935  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:7944  warning  Unexpected console statement                                           no-console
+  1:7960  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:7961  warning  Unexpected unnamed function                                            func-names
+  1:7970  error    't' is already declared in the upper scope                             no-shadow
+  1:8005  error    Unexpected use of '~'                                                  no-bitwise
+  1:8092  error    All 'var' declarations must be at the top of the function scope        vars-on-top
+  1:8092  error    Unexpected var, use let or const instead                               no-var
+  1:8096  error    'e' is already declared in the upper scope                             no-shadow
+  1:8098  warning  Unexpected unnamed function                                            func-names
+  1:8109  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8162  error    Unexpected use of comma operator                                       no-sequences
+  1:8224  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8247  error    'o' was used before it was defined                                     no-use-before-define
+  1:8251  error    'n' was used before it was defined                                     no-use-before-define
+  1:8264  error    'i' was used before it was defined                                     no-use-before-define
+  1:8270  error    'l' was used before it was defined                                     no-use-before-define
+  1:8272  warning  Unexpected unnamed function                                            func-names
+  1:8272  error    Expected to return a value at the end of function                      consistent-return
+  1:8287  error    'n' was used before it was defined                                     no-use-before-define
+  1:8328  error    't' is already declared in the upper scope                             no-shadow
+  1:8338  error    Expected 'undefined' and instead saw 'void'                            no-void
+  1:8354  error    'l' was used before it was defined                                     no-use-before-define
+  1:8360  error    'c' was used before it was defined                                     no-use-before-define
+  1:8368  error    'n' was used before it was defined                                     no-use-before-define
+  1:8389  warning  Unexpected unnamed function                                            func-names
+  1:8400  error    'n' was used before it was defined                                     no-use-before-define
+  1:8400  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8412  error    Expected '===' and instead saw '=='                                    eqeqeq
+  1:8427  error    'n' was used before it was defined                                     no-use-before-define
+  1:8453  error    'c' was used before it was defined                                     no-use-before-define
+  1:8469  error    'c' is already declared in the upper scope                             no-shadow
+  1:8473  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8473  error    'i' was used before it was defined                                     no-use-before-define
+  1:8477  error    'i' was used before it was defined                                     no-use-before-define
+  1:8482  error    'o' was used before it was defined                                     no-use-before-define
+  1:8515  warning  Unexpected unnamed function                                            func-names
+  1:8530  error    't' is already declared in the upper scope                             no-shadow
+  1:8537  error    'e' is already declared in the upper scope                             no-shadow
+  1:8539  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8584  error    Unexpected use of comma operator                                       no-sequences
+  1:8593  error    Use array destructuring                                                prefer-destructuring
+  1:8755  warning  Unexpected unnamed function                                            func-names
+  1:8764  error    't' is already declared in the upper scope                             no-shadow
+  1:8766  error    'e' is already declared in the upper scope                             no-shadow
+  1:8769  error    Expected an assignment or function call and instead saw an expression  no-unused-expressions
+  1:8782  warning  Unexpected unnamed function                                            func-names
+  1:8791  error    't' is already declared in the upper scope                             no-shadow
+  1:8793  error    'e' is already declared in the upper scope                             no-shadow
+
+F:\electron-music-app\src\index.tsx
+  4:23  error  Unable to resolve path to module './router'                              import/no-unresolved
+  5:8   error  Unable to resolve path to module '@Assets/iconfont/iconfont.global.css'  import/no-unresolved
+  6:8   error  Unable to resolve path to module '@Assets/.global.scss'                  import/no-unresolved
+  8:17  error  JSX not allowed in files with extension '.tsx'                           react/jsx-filename-extension
+
+F:\electron-music-app\src\router\index.tsx
+   3:20  error  Unable to resolve path to module '../views/layout'         import/no-unresolved
+   5:28  error  Unexpected require()                                       global-require
+   5:36  error  Unable to resolve path to module '@Views/digitalMusic'     import/no-unresolved
+   6:7   error  Identifier 'FM_Top' is not in camel case                   camelcase
+   6:22  error  Unexpected require()                                       global-require
+   6:30  error  Unable to resolve path to module '@Views/FmTop'            import/no-unresolved
+   7:7   error  Identifier 'LOOK_Live' is not in camel case                camelcase
+   7:25  error  Unexpected require()                                       global-require
+   7:33  error  Unable to resolve path to module '@Views/lookLive'         import/no-unresolved
+   8:21  error  Unexpected require()                                       global-require
+   8:29  error  Unable to resolve path to module '@Views/video'            import/no-unresolved
+   9:26  error  Unexpected require()                                       global-require
+   9:34  error  Unable to resolve path to module '@Views/friendList'       import/no-unresolved
+  10:26  error  Unexpected require()                                       global-require
+  10:34  error  Unable to resolve path to module '@Views/musicLocal'       import/no-unresolved
+  11:31  error  Unexpected require()                                       global-require
+  11:39  error  Unable to resolve path to module '@Views/downloadManager'  import/no-unresolved
+  13:16  error  Component should be written as a pure function             react/prefer-stateless-function
+  16:7   error  JSX not allowed in files with extension '.tsx'             react/jsx-filename-extension
+
+F:\electron-music-app\src\utils\request.ts
+   1:1  error  'axios' should be listed in the project's dependencies, not devDependencies      import/no-extraneous-dependencies
+   2:1  error  'nprogress' should be listed in the project's dependencies, not devDependencies  import/no-extraneous-dependencies
+  12:3  error  'error' is defined but never used                                                no-unused-vars
+  20:3  error  'error' is defined but never used                                                no-unused-vars
+
+F:\electron-music-app\src\views\digitalMusic\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\downloadManager\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\fmTop\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\friendList\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\layout\appFooterPlay\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\layout\appLeftAside\index.tsx
+  73:5   error  Must use destructuring props assignment                                                         react/destructuring-assignment
+  80:30  error  JSX not allowed in files with extension '.tsx'                                                  react/jsx-filename-extension
+  84:13  error  Visible, non-interactive elements with click handlers must have at least one keyboard listener  jsx-a11y/click-events-have-key-events
+  84:13  error  Non-interactive elements should not be assigned mouse or keyboard event listeners               jsx-a11y/no-noninteractive-element-interactions
+
+F:\electron-music-app\src\views\layout\appTopNav\index.tsx
+   2:1   error  'electron' should be listed in the project's dependencies, not devDependencies  import/no-extraneous-dependencies
+   3:1   error  'antd' should be listed in the project's dependencies, not devDependencies      import/no-extraneous-dependencies
+  17:22  error  'Readonly' is not defined                                                       no-undef
+  60:7   error  JSX not allowed in files with extension '.tsx'                                  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\layout\index.tsx
+   2:1   error  'antd' should be listed in the project's dependencies, not devDependencies  import/no-extraneous-dependencies
+   4:23  error  Unable to resolve path to module './appTopNav'                              import/no-unresolved
+   5:26  error  Unable to resolve path to module './appLeftAside'                           import/no-unresolved
+   6:27  error  Unable to resolve path to module './appFooterPlay'                          import/no-unresolved
+  12:16  error  Component should be written as a pure function                              react/prefer-stateless-function
+  15:7   error  JSX not allowed in files with extension '.tsx'                              react/jsx-filename-extension
+  20:14  error  Must use destructuring props assignment                                     react/destructuring-assignment
+  20:25  error  'children' is missing in props validation                                   react/prop-types
+
+F:\electron-music-app\src\views\lookLive\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\musicLocal\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+F:\electron-music-app\src\views\test\index.tsx
+  4:19  error  'history' is missing in props validation         react/prop-types
+  6:5   error  JSX not allowed in files with extension '.tsx'   react/jsx-filename-extension
+  8:7   error  Missing an explicit type attribute for button    react/button-has-type
+  8:38  error  'history.goBack' is missing in props validation  react/prop-types
+
+F:\electron-music-app\src\views\video\index.tsx
+  3:16  error  Component should be written as a pure function  react/prefer-stateless-function
+  6:7   error  JSX not allowed in files with extension '.tsx'  react/jsx-filename-extension
+
+✖ 121 problems (112 errors, 9 warnings)

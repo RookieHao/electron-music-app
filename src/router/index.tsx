@@ -16,14 +16,14 @@ export default class Routers extends Component {
       <HashRouter>
         <Switch>
           <LayOut>
-            <Route path="/" exact render={()=> (<Redirect to="/digital-music"></Redirect>)}></Route>
-            <Route path="/digital-music" exact component={DigitalMusic()}></Route>
-            <Route path="/FM_Top" exact component={FM_Top()}></Route>
-            <Route path="/LOOK_Live" exact component={LOOK_Live()}></Route>
-            <Route path="/Video" exact component={Video()}></Route>
-            <Route path="/FriendList" exact component={FriendList()}></Route>
-            <Route path="/MUSIClocal" exact component={MUSIClocal()}></Route>
-            <Route path="/DownloadManager" exact component={DownloadManager()}></Route>
+            <Route path="/" exact render={()=> (<Redirect to="/digital-music" />)} />
+            <Route path="/digital-music" exact component={DigitalMusic()} />
+            <Route path="/FM_Top" exact component={FM_Top()} />
+            <Route path="/LOOK_Live" exact component={LOOK_Live()} />
+            <Route path="/Video" exact component={Video()} />
+            <Route path="/FriendList" exact component={FriendList()} />
+            <Route path="/MUSIClocal" exact component={MUSIClocal()} />
+            <Route path="/DownloadManager" exact component={DownloadManager()} />
           </LayOut>
         </Switch>
       </HashRouter>
