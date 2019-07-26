@@ -24,6 +24,7 @@ module.exports = meger(common, {
     host: "localhost",
     port: 3000,
     quiet: true,
+    overlay: true,
     before() {
       console.log("Starting Main Process...");
       spawn("npm", ["run", "run:main"], {

@@ -1,50 +1,27 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import CSS from './styles/index.css';
-import SCSS from './styles/index.scss';
-import LESS from './styles/index.less';
-import  './styles/index.global.css';
-import './styles/index.global.scss';
-import './styles/index.global.less';
+import React,{Component} from "react";
+import { Layout } from "antd";
 
-interface State{
-  time: Date;
-}
+import AppTopNav from './appTopNav';
+import AppLeftAside from './appLeftAside';
+import AppFooterPlay from './appFooterPlay';
 
+import layOutStyle from './styles/layOut.scss';
 
-export default class LayOut extends Component {
-  state: State
-  timer: any
-  constructor(props: Readonly<{}>){
-    super(props)
-    this.state = {
-      time : new Date()
-    }
-  }
-  componentDidMount(){
-    this.timer = setInterval(()=>{
-      this.setState({
-        time :new Date()
-      })
-    },1000)
-  }
-  componentWillUnmount(){
-    clearInterval(this.timer)
-    this.timer = null
-  }
-  render() {
-    let { time } = this.state;
-    return ( 
-      <div>
-        <p className={CSS.css1}>123 { time.toString() } </p>
-        <p className={SCSS.scss1}>1789 { time.toString() } </p>
-        <p className={LESS.less1}> { time.toString() } </p>
-        <p className="global-css1"> { time.toString() } </p>
-        <p className="global-less"> { time.toString() } </p>
-        <p className="global-scss"> { time.toString() } </p>
-        <p className="global-scss"> { process.env.toString() } </p>
-        <Link to="/test">to Test</Link>
-      </div>
+const { Header, Sider, Content,Footer } = Layout;
+
+export default class LayOut extends Component{
+  render(){
+    return (
+      <Layout>
+        <Header className={layOutStyle.header}><AppTopNav></AppTopNav></Header>
+        <Layout>
+          <Sider className={layOutStyle['left-aside']}><AppLeftAside></AppLeftAside></Sider>
+          <Content className={layOutStyle['main-content']}>
+            {this.props.children}
+          </Content>
+        </Layout>
+        <Footer className={layOutStyle.footer}><AppFooterPlay></AppFooterPlay></Footer>
+      </Layout>
     )
   }
 }

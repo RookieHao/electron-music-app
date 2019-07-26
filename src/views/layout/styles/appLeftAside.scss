@@ -1,0 +1,40 @@
+.left-aside{
+  color:$aside-font-color;
+  font-size: $font-size-13;
+  .menu-content{
+    li{
+      padding:6.5px 0;
+    }
+    .group-title{
+      color:$aside-menu-group-title-font-color;
+      padding-left: 15px;
+      &:not(:first-child){
+        margin-top: 10px; 
+      }
+    }
+    .menu-item{
+      cursor: pointer;
+      padding-left:25px;
+      &.menu-item-normal{
+        color:$aside-font-color;
+        &:hover{
+          color:$aside-font-active-color;
+        }
+      }
+      &.active-item{
+        background-color: $aside-active-item-bgColor;
+        color:$aside-font-active-color;
+        position: relative;
+        &::before{
+          content: '';
+          position: absolute;
+          height: 100%;
+          left: 0;
+          top: 0;
+          width:3px;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+}

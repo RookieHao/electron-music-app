@@ -22,8 +22,12 @@ let mainWindow: BrowserWindow | null;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 800,
+    width: 1022,
+    height: 670,
+    minWidth:1024,
+    minHeight:670,
+    frame: false,
+    backgroundColor: '#FAFAFA',
     webPreferences: {
       nodeIntegration: true
     }
@@ -38,13 +42,13 @@ function createWindow () {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
   
-    const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+    // const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
   
-    [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach(extension => {
-      installExtension(extension)
-          .then((name:any) => console.log(`Added Extension: ${name}`))
-          .catch((err:any) => console.log('An error occurred: ', err));
-    });
+    // [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach(extension => {
+    //   installExtension(extension)
+    //       .then((name:any) => console.log(`Added Extension: ${name}`))
+    //       .catch((err:any) => console.log('An error occurred: ', err));
+    // });
 
   } else {
     mainWindow.loadURL(formatUrl({
@@ -52,6 +56,7 @@ function createWindow () {
       protocol: 'file',
       slashes: true
     }));
+    new AppUpdater();
   }
 
   // Emitted when the window is closed.
@@ -61,8 +66,6 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null;
   })
-
-  new AppUpdater();
 }
 
 // This method will be called when Electron has finished

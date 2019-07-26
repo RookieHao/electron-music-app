@@ -1,4 +1,4 @@
-const { cssLoader, globalCssLoader } = require('./utils');
+const { cssLoader, globalCssLoader, nodeModulesCssLoader } = require('./utils');
 const { join, resolve, posix } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -26,6 +26,9 @@ module.exports = {
       globalCssLoader(),
       globalCssLoader("sass"),
       globalCssLoader("less"),
+      nodeModulesCssLoader(),
+      nodeModulesCssLoader("sass"),
+      nodeModulesCssLoader("less"),
       {
         test: /.(j|t)sx?$/i,
         include: [resolve(__dirname, "../src")],

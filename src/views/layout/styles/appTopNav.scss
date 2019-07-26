@@ -1,0 +1,11 @@
+.top-nav{
+  .window-operate{
+    float: right;
+    .icon{
+      margin-left: 10px;
+      &:hover{
+        color:#fff;
+      }
+    }
+  }
+}

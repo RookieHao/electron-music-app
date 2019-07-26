@@ -12,6 +12,13 @@ module.exports = {
     ["@babel/proposal-decorators", { "legacy": true }],
     "@babel/proposal-function-bind",
     "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
+    [
+      'import', {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+      }
+    ]
   ]
 }
