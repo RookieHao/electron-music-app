@@ -2,12 +2,13 @@
 
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
+import {Icon} from 'antd'
 
-import {Button} from 'antd'
-const ButtonGroup = Button.Group
+import navigationStyle from './index.scss'
 
 interface StateTypes {
-  historyStack: Array<{}>
+  activeRouteNumber: number
+  historyLength: number
 }
 
 export default withRouter(
@@ -15,15 +16,48 @@ export default withRouter(
     constructor(props: RouteComponentProps) {
       super(props)
       this.state = {
-        historyStack: [],
+        activeRouteNumber: 1,
+        historyLength: 1,
       }
     }
+    componentWillReceiveProps({history}: RouteComponentProps) {
+      if (history.action !== 'POP') {
+        this.setState({
+          historyLength: history.length,
+          activeRouteNumber: history.length,
+        })
+      }
+    }
+
+    goBack = () => {
+      let {activeRouteNumber} = this.state
+      this.setState({
+        activeRouteNumber: activeRouteNumber - 1,
+      })
+      this.props.history.goBack()
+    }
+    goForward = () => {
+      let {activeRouteNumber} = this.state
+      this.setState({
+        activeRouteNumber: activeRouteNumber + 1,
+      })
+      this.props.history.goForward()
+    }
     render() {
+      let {activeRouteNumber, historyLength} = this.state
       return (
-        <ButtonGroup>
-          <Button type="danger" icon="left" />
-          <Button type="danger" icon="right" />
-        </ButtonGroup>
+        <div className={navigationStyle['btn-group']}>
+          <div
+            className={navigationStyle.btn + ' ' + (activeRouteNumber > 1 && navigationStyle['active-btn'])}
+            onClick={this.goBack}>
+            <Icon type="left" />
+          </div>
+          <div
+            className={navigationStyle.btn + ' ' + (activeRouteNumber < historyLength && navigationStyle['active-btn'])}
+            onClick={this.goForward}>
+            <Icon type="right" />
+          </div>
+        </div>
       )
     }
   },

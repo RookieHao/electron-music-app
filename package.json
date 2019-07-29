@@ -107,7 +107,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "core-js": "3",
+    "core-js": "^3.1.4",
     "electron-log": "^3.0.6",
     "electron-updater": "^4.1.2",
     "react": "^16.8.6",

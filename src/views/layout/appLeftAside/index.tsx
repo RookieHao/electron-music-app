@@ -66,11 +66,19 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
     }
   }
 
+  componentWillReceiveProps({location}: RouteComponentProps) {
+    if (location.pathname.length > 1) {
+      this.setState({
+        activeItemKey: location.pathname.slice(1),
+      })
+    }
+  }
+
   menuItemClick = (key: string) => {
-    this.setState({
-      activeItemKey: key,
-    })
-    this.props.history.push(key)
+    let {location} = this.props
+    if (location.pathname !== '/' + key) {
+      this.props.history.push(key)
+    }
   }
 
   generateMenus = () => {

@@ -1,0 +1,29 @@
+.btn-group{
+  text-align: center;
+  .btn{
+    width:25px;
+    float: left;
+    border: 1px solid #A82828;
+    color: $header-input-placeholder-color;
+    user-select: none;
+    pointer-events: none;
+    &:first-child{
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    &:last-child{
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    &.active-btn{
+      cursor: pointer;
+      color: $font-color-fff;
+      pointer-events: all;
+      &:active{
+        border-color: #961D1D;
+        color:#961D1D;
+        background-color: #B12323;
+      }
+    }
+  }
+}
