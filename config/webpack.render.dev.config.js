@@ -12,7 +12,7 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const notifier = require("node-notifier");
 
 console.log(
-  "======================================================================================>"
+  "dev======================================================================================>"
 );
 
 module.exports = meger(common, {

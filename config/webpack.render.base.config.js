@@ -2,7 +2,6 @@ const { cssLoader, globalCssLoader, nodeModulesCssLoader } = require('./utils');
 const { join, resolve, posix } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-console.log(__dirname)
 module.exports = {
   entry:join(__dirname, "../src", "index.tsx"),
   resolve:{
