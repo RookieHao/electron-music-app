@@ -6,6 +6,8 @@ interface CssExports {
   'active-item': string
   'group-title': string
   'left-aside': string
+  'left-aside-menu': string
+  'left-aside-top': string
   'menu-content': string
   'menu-item': string
   'menu-item-normal': string

@@ -4,14 +4,12 @@ import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import LeftAsideStyle from '../styles/appLeftAside.scss'
 
-interface State {
+interface StateTypes {
   menus: Array<{name: string; key: string; items: Array<{name: string; key: string; icon: string}>}>
   activeItemKey: string
 }
 
-class LeftAside extends Component<RouteComponentProps> {
-  state: State
-
+class LeftAside extends Component<RouteComponentProps, StateTypes> {
   constructor(props: RouteComponentProps) {
     super(props)
     this.state = {
@@ -68,7 +66,7 @@ class LeftAside extends Component<RouteComponentProps> {
     }
   }
 
-  menuItemClick = key => {
+  menuItemClick = (key: string) => {
     this.setState({
       activeItemKey: key,
     })
@@ -77,7 +75,7 @@ class LeftAside extends Component<RouteComponentProps> {
 
   generateMenus = () => {
     const {menus, activeItemKey} = this.state
-    const generateMenuItems = []
+    const generateMenuItems: (JSX.Element | JSX.Element[])[] = []
     menus.forEach(menu => {
       generateMenuItems.push(
         <li key={menu.key} className={LeftAsideStyle['group-title']}>
@@ -108,7 +106,10 @@ class LeftAside extends Component<RouteComponentProps> {
   render() {
     return (
       <aside className={LeftAsideStyle['left-aside']}>
-        <ul className={LeftAsideStyle['menu-content']}>{this.generateMenus()}</ul>
+        <div className={LeftAsideStyle['left-aside-top']}>网易云音乐</div>
+        <section className={LeftAsideStyle['left-aside-menu']}>
+          <ul className={LeftAsideStyle['menu-content']}>{this.generateMenus()}</ul>
+        </section>
       </aside>
     )
   }

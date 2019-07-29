@@ -8,13 +8,13 @@ module.exports = {
     extensions: [".json", ".js", ".jsx", ".tsx"],
     alias:{
       '@': resolve("src"),
-      '@Api': resolve("src/api"),
-      '@Router': resolve("src/router"),
-      '@Utils': resolve("src/utils"),
-      '@Components': resolve("src/components"),
-      '@Store': resolve("src/store"),
-      '@Views': resolve("src/views"),
-      '@Assets': resolve("src/assets")
+      '@api': resolve("src/api"),
+      '@router': resolve("src/router"),
+      '@utils': resolve("src/utils"),
+      '@components': resolve("src/components"),
+      '@store': resolve("src/store"),
+      '@views': resolve("src/views"),
+      '@assets': resolve("src/assets")
     }
   },
   module:{

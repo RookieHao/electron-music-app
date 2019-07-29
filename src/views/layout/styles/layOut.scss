@@ -5,11 +5,12 @@
   padding:0 15px;
   color:$header-font-color;
 }
+
 .left-aside{
-  height: calc(100vh - 100px);
+  height: calc(100vh - 50px);
+  position: relative;
   overflow: hidden;
   background-color: $aside-bg-color;
-  border-right: 1px solid $aside-border-color;
 }
 
 .main-content{

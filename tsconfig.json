@@ -9,16 +9,27 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "target": "esnext",
-    "module": "commonjs",
+    "allowJs": true,
     "strict": true,
+    "module": "commonjs",
     "jsx": "react",
-    "outDir": "dist/main",
+    "outDir": "dist",
+    "baseUrl":"./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@api/*": ["src/api/*"],
+      "@router/*": ["src/router/*"],
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"],
+      "@store/*": ["src/store/*"],
+      "@views/*": ["src/views/*"],
+      "@assets/*": ["src/assets/*"]
+    },
   },
-  "include": [
-    "main"
-  ],
+  "include": ["src","main","public"],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "config"
   ]
 }

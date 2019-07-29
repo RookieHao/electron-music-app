@@ -15,14 +15,16 @@ export default class LayOut extends Component {
   render() {
     return (
       <Layout>
-        <Header className={layOutStyle.header}>
-          <AppTopNav />
-        </Header>
         <Layout>
           <Sider className={layOutStyle['left-aside']}>
             <AppLeftAside />
           </Sider>
-          <Content className={layOutStyle['main-content']}>{this.props.children}</Content>
+          <Layout>
+            <Header className={layOutStyle.header}>
+              <AppTopNav />
+            </Header>
+            <Content className={layOutStyle['main-content']}>{this.props.children}</Content>
+          </Layout>
         </Layout>
         <Footer className={layOutStyle.footer}>
           <AppFooterPlay />

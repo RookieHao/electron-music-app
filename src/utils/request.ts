@@ -14,6 +14,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
+    Promise.reject(error.message)
     nprogress.done()
   },
 )
@@ -25,6 +26,7 @@ service.interceptors.response.use(
     return response
   },
   error => {
+    Promise.reject(error.message)
     nprogress.done()
   },
 )

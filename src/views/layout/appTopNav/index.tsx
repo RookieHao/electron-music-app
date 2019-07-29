@@ -3,19 +3,20 @@
 import React, {Component} from 'react'
 import {remote} from 'electron'
 import {Icon} from 'antd'
+
+import Navigation from '@components/navigation'
+
 import TopNavStyle from '../styles/appTopNav.scss'
 
 const {getCurrentWindow} = remote
 
 const currentWindow = getCurrentWindow()
 
-interface State {
+interface StateTypes {
   isMaximized: boolean
 }
 
-export default class TopNav extends Component {
-  state: State
-
+export default class TopNav extends Component<{}, StateTypes> {
   constructor(props: Readonly<{}>) {
     super(props)
     this.state = {
@@ -60,7 +61,7 @@ export default class TopNav extends Component {
     const {isMaximized} = this.state
     return (
       <header className={TopNavStyle['top-nav']}>
-        网易云音乐
+        <Navigation></Navigation>
         <div className={`operate-btn ${TopNavStyle['window-operate']}`}>
           <Icon type="line" title="最小化" className={TopNavStyle.icon} onClick={this.minimize} />
           {isMaximized ? (

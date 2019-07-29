@@ -1,38 +1,55 @@
 .left-aside{
-  color:$aside-font-color;
-  font-size: $font-size-13;
-  .menu-content{
-    li{
-      padding:6.5px 0;
-    }
-    .group-title{
-      color:$aside-menu-group-title-font-color;
-      padding-left: 15px;
-      &:not(:first-child){
-        margin-top: 10px; 
+  .left-aside-top{
+    -webkit-app-region: drag;
+    height:50px;
+    line-height: 50px;
+    background-color: $primary-color;
+    color:$font-color-fff;
+    padding-left: 15px;
+  }
+  .left-aside-menu{
+    position: absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:50px;
+    color:$aside-font-color;
+    font-size: $font-size-12;
+    border-right: 1px solid $aside-border-color;
+    .menu-content{
+      li{
+        padding:6.5px 0;
       }
-    }
-    .menu-item{
-      cursor: pointer;
-      padding-left:25px;
-      &.menu-item-normal{
-        color:$aside-font-color;
-        &:hover{
-          color:$aside-font-active-color;
+      .group-title{
+        color:$aside-menu-group-title-font-color;
+        padding-left: 15px;
+        font-size: 12.5px;
+        &:not(:first-child){
+          margin-top: 10px; 
         }
       }
-      &.active-item{
-        background-color: $aside-active-item-bgColor;
-        color:$aside-font-active-color;
-        position: relative;
-        &::before{
-          content: '';
-          position: absolute;
-          height: 100%;
-          left: 0;
-          top: 0;
-          width:3px;
-          background-color: $primary-color;
+      .menu-item{
+        cursor: pointer;
+        padding-left:25px;
+        &.menu-item-normal{
+          color:$aside-font-color;
+          &:hover{
+            color:$aside-font-active-color;
+          }
+        }
+        &.active-item{
+          background-color: $aside-active-item-bgColor;
+          color:$aside-font-active-color;
+          position: relative;
+          &::before{
+            content: '';
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width:3px;
+            background-color: $primary-color;
+          }
         }
       }
     }

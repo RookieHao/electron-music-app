@@ -2,7 +2,7 @@
 import { app, BrowserWindow } from 'electron'
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import path from 'path';
+import { resolve } from 'path';
 import { format as formatUrl } from 'url'
 
 const DEBUG: boolean = process.env.NODE_ENV === 'development'
@@ -52,7 +52,7 @@ function createWindow () {
 
   } else {
     mainWindow.loadURL(formatUrl({
-      pathname: path.resolve(__dirname, '../render/index.html'),
+      pathname: resolve(__dirname, '../render/index.html'),
       protocol: 'file',
       slashes: true
     }));
