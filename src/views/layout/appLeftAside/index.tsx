@@ -62,7 +62,7 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
           ],
         },
       ],
-      activeItemKey: 'digital-music',
+      activeItemKey: '',
     }
   }
 
@@ -73,7 +73,15 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
       })
     }
   }
-
+  componentDidMount() {
+    if (!this.state.activeItemKey) {
+      let {location} = this.props
+      this.props.history.length = 1
+      this.setState({
+        activeItemKey: location.pathname.slice(1),
+      })
+    }
+  }
   menuItemClick = (key: string) => {
     let {location} = this.props
     if (location.pathname !== '/' + key) {

@@ -45,7 +45,7 @@ module.exports = meger(common, {
     // 不同于 DefinePlugin，默认值将被 EnvironmentPlugin 执行 JSON.stringify。
     new EnvironmentPlugin({
       NODE_ENV: "development",
-      DEBUG: true
+      IS_DEBUG: true
     }),
 
     // 配合 webpack-dev-server  quiet: true,清理控制台编译输出结果

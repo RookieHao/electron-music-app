@@ -20,7 +20,7 @@ module.exports= merge(common, {
   plugins:[
     new EnvironmentPlugin({
       NODE_ENV:'production',
-      DEBUG:false
+      IS_DEBUG:false
     }),
     new BundleAnalyzerPlugin({
       analyzerMode:'static',

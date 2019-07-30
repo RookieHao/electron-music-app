@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry:join(__dirname, "../src", "index.tsx"),
   resolve:{
-    extensions: [".json", ".js", ".jsx", ".tsx"],
+    extensions: [".json", ".js",".ts", ".jsx", ".tsx"],
     alias:{
       '@': resolve("src"),
       '@api': resolve("src/api"),

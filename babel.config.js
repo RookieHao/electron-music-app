@@ -5,7 +5,8 @@ module.exports = {
       "@babel/env",
       {
         targets: { electron: require('electron/package.json').version },
-        useBuiltIns: 'usage'
+        useBuiltIns: 'usage',
+        corejs: "3.1.4",
       }
     ],
     "@babel/react", "@babel/typescript"],

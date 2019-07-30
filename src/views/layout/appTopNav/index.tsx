@@ -62,6 +62,7 @@ export default class TopNav extends Component<{}, StateTypes> {
     return (
       <header className={TopNavStyle['top-nav']}>
         <Navigation></Navigation>
+
         <div className={`operate-btn ${TopNavStyle['window-operate']}`}>
           <Icon type="line" title="最小化" className={TopNavStyle.icon} onClick={this.minimize} />
           {isMaximized ? (

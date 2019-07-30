@@ -5,7 +5,7 @@ import log from 'electron-log';
 import { resolve } from 'path';
 import { format as formatUrl } from 'url'
 
-const DEBUG: boolean = process.env.NODE_ENV === 'development'
+const IS_DEBUG: boolean = process.env.NODE_ENV === 'development'
 
 export default class AppUpdater {
   constructor() {
@@ -36,7 +36,7 @@ function createWindow () {
   // and load the index.html of the app.
 
   // mainWindow.loadFile('index.html')
-  if (DEBUG) {
+  if (IS_DEBUG) {
     mainWindow.loadURL(`http://localhost:3000`);
 
     // Open the DevTools.
