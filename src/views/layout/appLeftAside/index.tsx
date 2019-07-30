@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
+import addClassName from 'classnames'
 import LeftAsideStyle from '../styles/appLeftAside.scss'
 
 interface StateTypes {
@@ -94,7 +95,7 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
     const generateMenuItems: (JSX.Element | JSX.Element[])[] = []
     menus.forEach(menu => {
       generateMenuItems.push(
-        <li key={menu.key} className={LeftAsideStyle['group-title']}>
+        <li key={menu.key} className={addClassName(LeftAsideStyle['group-title'])}>
           {menu.name}
         </li>,
       )
@@ -104,9 +105,11 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
             return (
               <li
                 key={item.key}
-                className={`${LeftAsideStyle['menu-item']} ${
-                  activeItemKey === item.key ? LeftAsideStyle['active-item'] : LeftAsideStyle['menu-item-normal']
-                }`}
+                className={addClassName({
+                  [LeftAsideStyle['menu-item']]: true,
+                  [LeftAsideStyle['active-item']]: activeItemKey === item.key,
+                  [LeftAsideStyle['menu-item-normal']]: activeItemKey !== item.key,
+                })}
                 onClick={() => this.menuItemClick(item.key)}>
                 <span>{item.name}</span>
               </li>

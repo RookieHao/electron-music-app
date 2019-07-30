@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {Icon} from 'antd'
-
+import addClassName from 'classnames'
 import navigationStyle from './index.scss'
 
 interface StateTypes {
@@ -46,14 +46,20 @@ export default withRouter(
     render() {
       let {activeRouteNumber, historyLength} = this.state
       return (
-        <div className={navigationStyle['btn-group']}>
+        <div className={addClassName('operate-btn', navigationStyle['btn-group'])}>
           <div
-            className={navigationStyle.btn + ' ' + (activeRouteNumber > 1 && navigationStyle['active-btn'])}
+            className={addClassName({
+              [navigationStyle.btn]: true,
+              [navigationStyle['active-btn']]: activeRouteNumber > 1,
+            })}
             onClick={this.goBack}>
             <Icon type="left" />
           </div>
           <div
-            className={navigationStyle.btn + ' ' + (activeRouteNumber < historyLength && navigationStyle['active-btn'])}
+            className={addClassName({
+              [navigationStyle.btn]: true,
+              [navigationStyle['active-btn']]: activeRouteNumber < historyLength,
+            })}
             onClick={this.goForward}>
             <Icon type="right" />
           </div>
