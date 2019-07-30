@@ -1,4 +1,3 @@
-const { resolve } = require('path');
 module.exports = {
   presets: [
     [
@@ -15,7 +14,8 @@ module.exports = {
     "@babel/proposal-function-bind",
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",
-    // [
+    // 通过插件babel-plugin-module-resolver 配置module别名,不使用webpack的话，可以使用此插件配置别名
+    // [ 
     //   'module-resolver',
     //   {
     //     extensions: ['.js', '.jsx', '.ts', '.tsx'],

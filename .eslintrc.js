@@ -17,7 +17,7 @@ module.exports = {
       "pragma": "React",
       "version": "detect"
     },
-    "import/resolver": {
+    "import/resolver": { // 扩展eslint 的模块解析
       "webpack": {
         "config": "./config/webpack.render.base.config.js",
       }
