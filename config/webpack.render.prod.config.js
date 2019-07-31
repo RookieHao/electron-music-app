@@ -11,7 +11,7 @@ module.exports= merge(common, {
     path: resolve(__dirname,"../dist/render"),
     publicPath: "./",
     filename: "js/render.prod.js",
-    chunkFilename: "[name]-[id].js"
+    chunkFilename: "js/[name]-[id].js"
   },
   // externals: {
   //   "react": "React",

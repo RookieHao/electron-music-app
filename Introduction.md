@@ -200,7 +200,7 @@ npm install --save-dev style-loader css-loader sass node-sass sass-loader less l
           "config": "./config/webpack.render.base.config.js",
         }
       }
-    }, 
+    },
     plugins: ['@typescript-eslint'],//定义了该eslint文件所依赖的插件
     env:{                          //指定代码的运行环境
         browser: true,
@@ -221,5 +221,3 @@ npm install --save-dev style-loader css-loader sass node-sass sass-loader less l
 - 6.electron配置
 
 三、遇到的问题
-
-- 1. 

@@ -1,7 +1,7 @@
 /** @format */
 
-import React, {Component, ClassicComponentClass} from 'react'
-import {HashRouter, Switch, Route, Redirect, RouteComponentProps} from 'react-router-dom'
+import React, {Component} from 'react'
+import {HashRouter, Route, Redirect, RouteComponentProps} from 'react-router-dom'
 import LayOut from '../views/layout'
 
 import DigitalMusic from '@views/digitalMusic'

@@ -2,15 +2,17 @@
 
 import React, {Component} from 'react'
 import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
+
+import LazyLoad from '@utils/lazyLoad'
 import LayOut from '../views/layout'
 
-import DigitalMusic from '@views/digitalMusic'
-import FM_Top from '@views/FmTop'
-import LOOK_Live from '@views/lookLive'
-import Video from '@views/video'
-import FriendList from '@views/friendList'
-import MUSIClocal from '@views/musicLocal'
-import DownloadManager from '@views/downloadManager'
+const DigitalMusic = LazyLoad(() => import(/* webpackChunkName:"digitalMusic" */ '@views/digitalMusic'))
+const FM_Top = LazyLoad(() => import(/* webpackChunkName:"FmTop" */ '@views/FmTop'))
+const LOOK_Live = LazyLoad(() => import(/* webpackChunkName:"lookLive" */ '@views/lookLive'))
+const Video = LazyLoad(() => import(/* webpackChunkName:"video" */ '@views/video'))
+const FriendList = LazyLoad(() => import(/* webpackChunkName:"friendList" */ '@views/friendList'))
+const MUSIClocal = LazyLoad(() => import(/* webpackChunkName:"musicLocal" */ '@views/musicLocal'))
+const DownloadManager = LazyLoad(() => import(/* webpackChunkName:"downloadManager" */ '@views/downloadManager'))
 
 export default class Routers extends Component {
   render() {

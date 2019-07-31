@@ -23,7 +23,7 @@ module.exports= {
     ]
   },
   plugins:[
-    new CleanWebpackPlugin()
+    mode === 'production' ? new CleanWebpackPlugin() : ()=>{}
   ],
   target:"electron-main",
   node: {
