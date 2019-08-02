@@ -2,16 +2,58 @@
 
 import React, {Component} from 'react'
 import RecommendedStyle from './index.scss'
+import LazyLoad from '@utils/lazyLoad'
 
-import Carousel from './components/carousel'
-import RecommendedCard from './components/recommendedCard'
+const RecommendedModules = [
+  // {
+  //   name: 'Banner',
+  //   title: 'Banner',
+  //   component: LazyLoad(() => import(/* webpackChunkName:"banner" */ './components/banner')),
+  // },
+  {
+    name: 'RecommendedPlayList',
+    title: '推荐歌单',
+    component: LazyLoad(() => import(/* webpackChunkName:"songlist" */ './components/recommendedPlayList')),
+  },
+  {
+    name: 'Exclusive',
+    title: '独家放送',
+    component: LazyLoad(() => import(/* webpackChunkName:"exclusive" */ './components/exclusive')),
+  },
+  {
+    name: 'RecommendedlatestMusic',
+    title: '最新音乐',
+    component: LazyLoad(() =>
+      import(/* webpackChunkName:"recommendedlatestMusic" */ './components/recommendedlatestMusic'),
+    ),
+  },
+  {
+    name: 'RecommendedMV',
+    title: '推荐MV',
+    component: LazyLoad(() => import(/* webpackChunkName:"recommendedMV" */ './components/recommendedMV')),
+  },
+  {
+    name: 'RecommendedFM',
+    title: '主播电台',
+    component: LazyLoad(() => import(/* webpackChunkName:"recommendedFM" */ './components/recommendedFM')),
+  },
+  {
+    name: 'LookLive',
+    title: 'LOOK直播',
+    component: LazyLoad(() => import(/* webpackChunkName:"lookLive" */ './components/lookLive')),
+  },
+]
 
-export default class index extends Component {
+export default class index extends Component<{}> {
+  constructor(props: {}) {
+    super(props)
+  }
   render() {
     return (
       <div className={RecommendedStyle.special}>
-        <Carousel></Carousel>
-        <RecommendedCard title="推荐歌单"></RecommendedCard>
+        {RecommendedModules.map(RModule => (
+          <RModule.component key={RModule.name}></RModule.component>
+        ))}
       </div>
     )
   }

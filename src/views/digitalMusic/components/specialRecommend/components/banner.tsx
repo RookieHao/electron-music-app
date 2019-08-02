@@ -5,7 +5,7 @@ import {Carousel} from 'antd'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
 
-export default class carousel extends Component<{}, StateTypes> {
+export default class carousel extends Component<{title?: string}, StateTypes> {
   constructor(props: {}) {
     super(props)
     this.state = {
@@ -23,7 +23,7 @@ export default class carousel extends Component<{}, StateTypes> {
       console.error(error)
     }
   }
-  render() {
+  public render() {
     let {banners} = this.state
     return (
       <div className={RecommendedStyle.banners}>

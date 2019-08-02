@@ -1,0 +1,31 @@
+.miko-card {
+  margin: 8px 0;
+  text-align: left;
+
+  .card-header {
+    height: 44px;
+    line-height: 44px;
+    border-bottom: boder-line();
+
+    .card-title {
+      float: left;
+      font-size: $font-size-16;
+      color: $font-color-333;
+    }
+
+    .card-opter {
+      float: right;
+      cursor: pointer;
+      font-size: $font-size-13;
+      color: $font-color-666;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .card-content {
+    padding: 15px 0;
+  }
+}
