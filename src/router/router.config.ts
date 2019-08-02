@@ -3,10 +3,20 @@
 import LazyLoad from '@utils/lazyLoad'
 import LayOut from '../views/layout'
 
-export default [
+export interface RouteType {
+  path:string;
+  redirect?:any;
+  component?:any,
+  children?:RouteType[]
+}
+
+const Router:RouteType[] = [
   {
     path: '/',
-    redirect: '/digital-music',
+    redirect: '/main'
+  },
+  {
+    path: '/main',
     component: LayOut,
     children: [
       {
@@ -39,4 +49,16 @@ export default [
       },
     ],
   },
+  {
+    path: '/login',
+    component: LazyLoad(() => import(/* webpackChunkName:"Login" */ '@views/test')),
+  },
+  {
+    path: '*',
+    component: LazyLoad(() => import(/* webpackChunkName:"404" */ '@views/404')),
+  }
 ]
+
+
+
+export default Router

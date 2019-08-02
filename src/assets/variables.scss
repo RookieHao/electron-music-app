@@ -2,6 +2,13 @@
 /*** common ****/
 $primary-color:#C62F2F; // 主题色
 $font-color-fff:#FFF;
+$font-color-333:#333;
+$font-color-666:#666;
+$font-color-999:#999;
+$font-color-000:#000;
+$font-color-eee:#EEE;
+$boder-color-cecece:#CECECE;
+$boder-color-dedede:#DEDEDE;
 
 /*** header ****/
 $header-input-placeholder-color:#C77373; // header 搜索框 placeholder-color
@@ -12,13 +19,12 @@ $header-font-active-color:#FFF;
 $aside-bg-color:#F5F5F7;
 $aside-font-color:#5C5C5C;
 $aside-menu-group-title-font-color:#7D7D7D;
-$aside-font-active-color:#000;
+$aside-font-active-color:$font-color-000;
 $aside-active-item-bgColor:#E6E7EA;
 $aside-border-color:#E1E1E2;
 
 
 /***  font-size ***/
-
 $font-size-10:10px;
 $font-size-11:11px;
 $font-size-12:12px;
@@ -28,3 +34,8 @@ $font-size-16:16px;
 $font-size-18:18px;
 $font-size-20:20px;
 $font-size-22:22px;
+
+/***  boder  ***/
+@function boder-line($size:'1px',$type:'solid',$color:$boder-color-dedede){
+  @return #{$size $type $color}
+}

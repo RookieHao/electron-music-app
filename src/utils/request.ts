@@ -5,7 +5,7 @@ import nprogress from 'nprogress'
 
 const service = axios.create({
   withCredentials: true,
-  baseURL: 'http://love.moko.org.cn',
+  baseURL: 'http://love.miko.org.cn',
 })
 
 service.interceptors.request.use(
@@ -22,6 +22,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     nprogress.done()
+
+    let data = response.data
+
+    if (response.statusText === 'OK' && data.code === 200) {
+      return response.data
+    }
 
     return response
   },

@@ -93,7 +93,7 @@ exports.nodeModulesCssLoader = function (style){
       cssLoader.use.push({
         loader: 'less-loader',
         options: {
-          modifyVars: {...aliyunTheme,'layout-header-background':'#C62F2F','layout-sider-background':'#f0f2f5','layout-trigger-background':'#f0f2f5'},
+          modifyVars: {...aliyunTheme,'primary-color':'#C62F2F','layout-header-background':'#C62F2F','layout-sider-background':'#f0f2f5','layout-trigger-background':'#f0f2f5'},
           javascriptEnabled:true
         }
       });
