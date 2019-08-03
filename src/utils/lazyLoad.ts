@@ -5,7 +5,7 @@ import Loadable, {LoadingComponentProps} from 'react-loadable'
 import {FunctionComponent} from 'react'
 
 export default (
-  loader: () => Promise<{default: ComponentType}>,
+  loader: () => Promise<{default: ComponentType<any>}>,
   {
     loading = Loading,
     timeout = 6000,

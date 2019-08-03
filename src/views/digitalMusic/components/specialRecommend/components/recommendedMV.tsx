@@ -6,9 +6,8 @@ import ElectronCard from '@components/electronCard'
 import RecommendedApi from '@api/digital.music.recommended'
 
 export interface IAppProps extends RouteComponentProps {
-  title?: string
+  title: string
 }
-
 export interface IAppState {}
 
 export default withRouter(
@@ -30,8 +29,13 @@ export default withRouter(
         console.error(error)
       }
     }
+    toMore = () => {
+      this.props.history.push('/Video/mv')
+    }
+
     public render() {
-      return <ElectronCard title="推荐MV"></ElectronCard>
+      let {title} = this.props
+      return <ElectronCard card-title={title} toMore={this.toMore}></ElectronCard>
     }
   },
 )

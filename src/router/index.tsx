@@ -20,11 +20,16 @@ export default class Routers extends Component {
       <HashRouter>
         <Switch>
           <LayOut>
-            <Route path="/" exact render={() => <Redirect to="/digital-music" />} />
-            <Route path="/digital-music" exact component={DigitalMusic} />
+            <Route path="/" exact render={() => <Redirect to="/digital-music/SpecialRecommend" />} />
+            <Route
+              path="/digital-music/:activeKey"
+              defaultParams={{activeKey: 'SpecialRecommend'}}
+              exact
+              component={DigitalMusic}
+            />
             <Route path="/FM_Top" exact component={FM_Top} />
             <Route path="/LOOK_Live" exact component={LOOK_Live} />
-            <Route path="/Video" exact component={Video} />
+            <Route path="/Video/:type" defaultParams={{activeKey: 'video'}} exact component={Video} />
             <Route path="/FriendList" exact component={FriendList} />
             <Route path="/MUSIClocal" exact component={MUSIClocal} />
             <Route path="/DownloadManager" exact component={DownloadManager} />

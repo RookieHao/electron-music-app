@@ -5,11 +5,11 @@ import RecommendedStyle from './index.scss'
 import LazyLoad from '@utils/lazyLoad'
 
 const RecommendedModules = [
-  // {
-  //   name: 'Banner',
-  //   title: 'Banner',
-  //   component: LazyLoad(() => import(/* webpackChunkName:"banner" */ './components/banner')),
-  // },
+  {
+    name: 'Banner',
+    title: 'Banner',
+    component: LazyLoad(() => import(/* webpackChunkName:"banner" */ './components/banner')),
+  },
   {
     name: 'RecommendedPlayList',
     title: '推荐歌单',
@@ -52,7 +52,7 @@ export default class index extends Component<{}> {
     return (
       <div className={RecommendedStyle.special}>
         {RecommendedModules.map(RModule => (
-          <RModule.component key={RModule.name}></RModule.component>
+          <RModule.component key={RModule.name} title={RModule.title} {...this.props}></RModule.component>
         ))}
       </div>
     )

@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
+import {Icon} from 'antd'
 import addClassName from 'classnames'
 import LeftAsideStyle from '../styles/appLeftAside.scss'
 
@@ -21,27 +22,27 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
           items: [
             {
               name: '发现音乐',
-              key: 'digital-music',
+              key: '/digital-music/SpecialRecommend',
               icon: 'mail',
             },
             {
               name: '私人FM',
-              key: 'FM_Top',
+              key: '/FM_Top',
               icon: 'mail',
             },
             {
               name: 'LOOK直播',
-              key: 'LOOK_Live',
+              key: '/LOOK_Live',
               icon: 'mail',
             },
             {
               name: '视频',
-              key: 'Video',
+              key: '/Video/video',
               icon: 'mail',
             },
             {
               name: '朋友',
-              key: 'FriendList',
+              key: '/FriendList',
               icon: 'mail',
             },
           ],
@@ -52,47 +53,56 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
           items: [
             {
               name: '本地音乐',
-              key: 'MUSIClocal',
+              key: '/MUSIClocal',
               icon: 'mail',
             },
             {
               name: '下载管理',
-              key: 'DownloadManager',
+              key: '/DownloadManager',
               icon: 'mail',
             },
           ],
         },
       ],
-      activeItemKey: '',
+      activeItemKey: '/digital-music/SpecialRecommend',
     }
   }
 
   componentWillReceiveProps({location}: RouteComponentProps) {
-    if (location.pathname.length > 1) {
+    if (location && location.pathname.length > 1) {
       this.setState({
-        activeItemKey: location.pathname.slice(1),
+        activeItemKey: location.pathname,
       })
     }
   }
   componentDidMount() {
-    if (!this.state.activeItemKey) {
-      let {location} = this.props
-      this.props.history.length = 1
+    let {location} = this.props
+    if (this.state.activeItemKey !== location.pathname) {
       this.setState({
-        activeItemKey: location.pathname.slice(1),
+        activeItemKey: location.pathname,
       })
     }
   }
   menuItemClick = (key: string) => {
-    let {location} = this.props
-    if (location.pathname !== '/' + key) {
-      this.props.history.push(key)
+    let {location, history} = this.props
+    if (location.pathname !== key) {
+      history.push(key)
     }
   }
 
+  IsActive = (key: string) => {
+    const {activeItemKey} = this.state
+    const RegExpActiveName = /^\/([^\/]*)/
+    let activeItemKeyEXEC = RegExpActiveName.exec(activeItemKey)
+    let ItemKeyEXEC = RegExpActiveName.exec(key)
+    // console.log(activeItemKeyEXEC,ItemKeyEXEC)
+    return activeItemKeyEXEC && ItemKeyEXEC && activeItemKeyEXEC[1] === ItemKeyEXEC[1]
+  }
+
   generateMenus = () => {
-    const {menus, activeItemKey} = this.state
+    const {menus} = this.state
     const generateMenuItems: (JSX.Element | JSX.Element[])[] = []
+
     menus.forEach(menu => {
       generateMenuItems.push(
         <li key={menu.key} className={addClassName(LeftAsideStyle['group-title'])}>
@@ -107,11 +117,12 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
                 key={item.key}
                 className={addClassName({
                   [LeftAsideStyle['menu-item']]: true,
-                  [LeftAsideStyle['active-item']]: activeItemKey === item.key,
-                  [LeftAsideStyle['menu-item-normal']]: activeItemKey !== item.key,
+                  [LeftAsideStyle['active-item']]: this.IsActive(item.key),
+                  [LeftAsideStyle['menu-item-normal']]: !this.IsActive(item.key),
                 })}
                 onClick={() => this.menuItemClick(item.key)}>
-                <span>{item.name}</span>
+                <Icon type={item.icon}></Icon>
+                <span className={LeftAsideStyle['menu-title']}>{item.name}</span>
               </li>
             )
           }),

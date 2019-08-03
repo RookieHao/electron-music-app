@@ -24,16 +24,18 @@ export default class TopNav extends Component<{}, StateTypes> {
     }
   }
 
-  componentDidMount() {
-    currentWindow.addListener('maximize', () => {
-      this.setState({
-        isMaximized: true,
-      })
-    })
-    currentWindow.addListener('unmaximize', () => {
-      this.setState({
-        isMaximized: false,
-      })
+  componentWillMount() {
+    currentWindow.addListener('maximize', this.setIsMaximized)
+    currentWindow.addListener('unmaximize', this.setIsMaximized)
+  }
+
+  componentWillUnmount() {
+    currentWindow.removeAllListeners()
+  }
+
+  setIsMaximized = () => {
+    this.setState({
+      isMaximized: currentWindow.isMaximized(),
     })
   }
 
@@ -62,15 +64,15 @@ export default class TopNav extends Component<{}, StateTypes> {
     return (
       <header className={TopNavStyle['top-nav']}>
         <Navigation></Navigation>
-
+        {location.hash}
         <div className={`operate-btn ${TopNavStyle['window-operate']}`}>
-          <Icon type="line" title="最小化" className={TopNavStyle.icon} onClick={this.minimize} />
+          <Icon type="line" title="最小化" className={TopNavStyle.icon} onClick={() => this.minimize()} />
           {isMaximized ? (
-            <Icon type="switcher" title="还原" className={TopNavStyle.icon} onClick={this.unmaximize} />
+            <Icon type="switcher" title="还原" className={TopNavStyle.icon} onClick={() => this.unmaximize()} />
           ) : (
-            <Icon type="border" title="最大化" className={TopNavStyle.icon} onClick={this.maximize} />
+            <Icon type="border" title="最大化" className={TopNavStyle.icon} onClick={() => this.maximize()} />
           )}
-          <Icon type="close" title="关闭" className={TopNavStyle.icon} onClick={this.closeWindow} />
+          <Icon type="close" title="关闭" className={TopNavStyle.icon} onClick={() => this.closeWindow()} />
         </div>
       </header>
     )

@@ -4,15 +4,15 @@ import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {Icon} from 'antd'
 import CardStyle from './index.scss'
+
 export default withRouter(
-  class recommendedCard extends Component<RouteComponentProps & cardInfoProps> {
+  class recommendedCard extends Component<cardInfoProps> {
     render() {
-      let {title} = this.props
       return (
         <div className={CardStyle['miko-card']}>
           <div className={CardStyle['card-header']}>
-            <div className={CardStyle['card-title']}>{title}</div>
-            <div className={CardStyle['card-opter']}>
+            <div className={CardStyle['card-title']}>{this.props['card-title']}</div>
+            <div className={CardStyle['card-opter']} onClick={this.props.toMore}>
               更多<Icon type="right"></Icon>
             </div>
           </div>
@@ -23,6 +23,7 @@ export default withRouter(
   },
 )
 
-interface cardInfoProps {
-  title: string
+export interface cardInfoProps extends RouteComponentProps {
+  'card-title': string
+  toMore: () => void
 }

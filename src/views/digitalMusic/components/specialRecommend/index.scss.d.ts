@@ -4,6 +4,17 @@
 // Please do not change this file!
 interface CssExports {
   banners: string
+  'exclusive-item-name': string
+  'exclusive-list': string
+  'exclusive-list-item': string
+  'img-box': string
+  'item-img-box': string
+  'item-name': string
+  'latest-list': string
+  'latest-list-group': string
+  'latest-list-item': string
+  'play-list-item': string
+  'recommended-play-list': string
   special: string
 }
 declare var cssExports: CssExports

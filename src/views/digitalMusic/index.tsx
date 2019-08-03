@@ -3,6 +3,7 @@
 import React, {Component} from 'react'
 import LazyLoad from '@utils/lazyLoad'
 import DigitalStyle from './index.scss'
+import {RouteComponentProps} from 'react-router-dom'
 import {Tabs} from 'antd'
 const {TabPane} = Tabs
 
@@ -38,14 +39,35 @@ const TabPanes = [
     component: LazyLoad(() => import(/* webpackChunkName:"latestMusic" */ './components/latestMusic')),
   },
 ]
-export default class index extends Component {
+
+interface StateType {
+  activeKey: string
+}
+
+export default class index extends Component<RouteComponentProps, StateType> {
+  constructor(props: RouteComponentProps) {
+    super(props)
+    this.state = {
+      activeKey: 'SpecialRecommend',
+    }
+  }
+
+  componentWillReceiveProps({match}: any) {
+    this.setState({
+      activeKey: match.params.activeKey,
+    })
+  }
+
+  onTabClick = (activeKey: string) => {
+    this.props.history.push(activeKey)
+  }
   render() {
     return (
       <div className={DigitalStyle['digital-music']}>
-        <Tabs animated={false}>
+        <Tabs animated={false} activeKey={this.state.activeKey} onTabClick={this.onTabClick}>
           {TabPanes.map(tabPane => (
             <TabPane tab={tabPane.tab} key={tabPane.name}>
-              <tabPane.component></tabPane.component>
+              <tabPane.component {...this.state}></tabPane.component>
             </TabPane>
           ))}
         </Tabs>

@@ -6,9 +6,8 @@ import ElectronCard from '@components/electronCard'
 import RecommendedApi from '@api/digital.music.recommended'
 
 export interface IAppProps extends RouteComponentProps {
-  title?: string
+  title: string
 }
-
 export interface IAppState {}
 
 export default withRouter(
@@ -30,8 +29,11 @@ export default withRouter(
         console.error(error)
       }
     }
+    toMore = () => {}
+
     public render() {
-      return <ElectronCard title="主播电台"></ElectronCard>
+      let {title} = this.props
+      return <ElectronCard card-title={title} toMore={this.toMore}></ElectronCard>
     }
   },
 )

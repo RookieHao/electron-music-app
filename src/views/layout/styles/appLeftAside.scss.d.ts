@@ -11,6 +11,7 @@ interface CssExports {
   'menu-content': string
   'menu-item': string
   'menu-item-normal': string
+  'menu-title': string
 }
 declare var cssExports: CssExports
 export = cssExports
