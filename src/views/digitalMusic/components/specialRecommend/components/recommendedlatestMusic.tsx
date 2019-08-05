@@ -30,10 +30,7 @@ export default withRouter(
     getPersonalized = async () => {
       try {
         let {result: resultList} = ((await RecommendedApi.getRecommendedLatestMusic()) as unknown) as ResponseResult
-        console.log(resultList)
-        this.setState({
-          ResultList: [resultList.splice(5), resultList],
-        })
+        this.setState({ResultList: [resultList.splice(5), resultList]})
       } catch (error) {
         console.error(error)
       }

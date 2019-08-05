@@ -37,11 +37,11 @@ const RecommendedModules = [
     title: '主播电台',
     component: LazyLoad(() => import(/* webpackChunkName:"recommendedFM" */ './components/recommendedFM')),
   },
-  {
-    name: 'LookLive',
-    title: 'LOOK直播',
-    component: LazyLoad(() => import(/* webpackChunkName:"lookLive" */ './components/lookLive')),
-  },
+  // {
+  //   name: 'LookLive',
+  //   title: 'LOOK直播',
+  //   component: LazyLoad(() => import(/* webpackChunkName:"lookLive" */ './components/lookLive')),
+  // },
 ]
 
 export default class index extends Component<{}> {

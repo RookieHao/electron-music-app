@@ -2,12 +2,17 @@
 
 import React, {Component} from 'react'
 import {remote} from 'electron'
-import {Icon} from 'antd'
+import {inject} from 'mobx-react'
 
+import {Icon} from 'antd'
 import Navigation from '@components/navigation'
 
 import TopNavStyle from '../styles/appTopNav.scss'
 
+import {LayOutStoreType} from '@store/layOut'
+interface LayOutStoreProps {
+  LayOut?: LayOutStoreType
+}
 const {getCurrentWindow} = remote
 
 const currentWindow = getCurrentWindow()
@@ -16,8 +21,9 @@ interface StateTypes {
   isMaximized: boolean
 }
 
-export default class TopNav extends Component<{}, StateTypes> {
-  constructor(props: Readonly<{}>) {
+@inject('LayOut')
+export default class TopNav extends Component<LayOutStoreProps, StateTypes> {
+  constructor(props: LayOutStoreProps) {
     super(props)
     this.state = {
       isMaximized: currentWindow.isMaximized(),
@@ -34,9 +40,13 @@ export default class TopNav extends Component<{}, StateTypes> {
   }
 
   setIsMaximized = () => {
+    this.props.LayOut && this.props.LayOut.setMaximized(currentWindow.isMaximized())
+
     this.setState({
       isMaximized: currentWindow.isMaximized(),
     })
+
+    console.log(this.props.LayOut && this.props.LayOut.isMaximized)
   }
 
   // 最大化

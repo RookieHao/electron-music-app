@@ -79,4 +79,65 @@
       }
     }
   }
+
+  // 推荐MV
+  .mv-list{
+    display: flex;
+    .mv-list-item{
+      flex:1;
+      position: relative;
+      cursor: pointer;
+      &:not(:nth-child(4n)){
+        margin-right: 10px;
+      }
+      .mv-item-img-box{
+        img{
+          width: 100%;
+        }
+      }
+      .mv-item-name{
+        color:$font-color-333;
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  // 主播电台
+  .fm-list{
+    display: flex;
+    .fm-list-item{
+      flex:1;
+      position: relative;
+      cursor: pointer;
+      &:before{
+        content: "";
+        padding-top: 100%;
+        display: block;
+      }
+      &:not(:nth-child(6n)){
+        margin-right: 10px;
+      }
+      .fm-item-img-box{
+        position: absolute;
+        left:0;
+        right: 10px;
+        top: 0;
+        img{
+          width: 100%;
+        }
+      }
+      .fm-item-name{
+        color:$font-color-333;
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }

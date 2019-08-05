@@ -29,10 +29,7 @@ export default withRouter(
     getPersonalized = async () => {
       try {
         let {result: ResultList} = ((await RecommendedApi.getPersonalizedPrivatecontent()) as unknown) as ResultList
-
-        this.setState({
-          ResultList,
-        })
+        this.setState({ResultList})
       } catch (error) {
         console.error(error)
       }

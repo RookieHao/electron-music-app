@@ -23,7 +23,7 @@ export default withRouter(
     }
     getPersonalized = async () => {
       try {
-        let bannersData = await RecommendedApi.getPersonalized()
+        let bannersData = await RecommendedApi.getLookRecommended()
         console.log(bannersData)
       } catch (error) {
         console.error(error)

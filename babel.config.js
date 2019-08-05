@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     ["@babel/proposal-decorators", { "legacy": true }],
     "@babel/proposal-function-bind",
-    "@babel/proposal-class-properties",
+    ["@babel/proposal-class-properties",{ "loose": true }],
     "@babel/proposal-object-rest-spread",
     // 通过插件babel-plugin-module-resolver 配置module别名,不使用webpack的话，可以使用此插件配置别名
     // [ 
