@@ -2,35 +2,29 @@
 
 import React, {Component} from 'react'
 import {remote} from 'electron'
-import {inject} from 'mobx-react'
+
+import {observer} from 'mobx-react'
 
 import {Icon} from 'antd'
 import Navigation from '@components/navigation'
-
 import TopNavStyle from '../styles/appTopNav.scss'
 
-import {LayOutStoreType} from '@store/layOut'
-interface LayOutStoreProps {
-  LayOut?: LayOutStoreType
-}
-const {getCurrentWindow} = remote
+import {LayOutType} from '@/store/mobx/index'
 
-const currentWindow = getCurrentWindow()
+const currentWindow = remote.getCurrentWindow()
 
-interface StateTypes {
-  isMaximized: boolean
+interface TopNavProps {
+  store: LayOutType
 }
 
-@inject('LayOut')
-export default class TopNav extends Component<LayOutStoreProps, StateTypes> {
-  constructor(props: LayOutStoreProps) {
+@observer
+export default class TopNav extends Component<TopNavProps> {
+  constructor(props: TopNavProps) {
     super(props)
-    this.state = {
-      isMaximized: currentWindow.isMaximized(),
-    }
+    this.setIsMaximized()
   }
 
-  componentWillMount() {
+  componentDidMount() {
     currentWindow.addListener('maximize', this.setIsMaximized)
     currentWindow.addListener('unmaximize', this.setIsMaximized)
   }
@@ -39,38 +33,22 @@ export default class TopNav extends Component<LayOutStoreProps, StateTypes> {
     currentWindow.removeAllListeners()
   }
 
-  setIsMaximized = () => {
-    this.props.LayOut && this.props.LayOut.setMaximized(currentWindow.isMaximized())
-
-    this.setState({
-      isMaximized: currentWindow.isMaximized(),
-    })
-
-    console.log(this.props.LayOut && this.props.LayOut.isMaximized)
-  }
+  setIsMaximized = () => this.props.store.setMaximized(currentWindow.isMaximized())
 
   // 最大化
-  maximize = () => {
-    currentWindow.maximize()
-  }
+  maximize = () => currentWindow.maximize()
 
   // 取消最大化
-  unmaximize = () => {
-    currentWindow.unmaximize()
-  }
+  unmaximize = () => currentWindow.unmaximize()
 
   // 最小化
-  minimize = () => {
-    currentWindow.minimize()
-  }
+  minimize = () => currentWindow.minimize()
 
   // 关闭窗口
-  closeWindow = () => {
-    currentWindow.close()
-  }
+  closeWindow = () => currentWindow.close()
 
   render() {
-    const {isMaximized} = this.state
+    const {isMaximized} = this.props.store
     return (
       <header className={TopNavStyle['top-nav']}>
         <Navigation></Navigation>
