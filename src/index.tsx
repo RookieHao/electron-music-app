@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import AppRouter from './router'
+import './icons'
 import '@assets/iconfont/iconfont.global.css'
 import '@assets/.global.scss'
 

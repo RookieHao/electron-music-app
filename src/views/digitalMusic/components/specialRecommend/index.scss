@@ -1,6 +1,8 @@
 .special {
+  margin: 0 auto;
+  max-width: 888px;
   .banners {
-    width: 70%;
+    width: 50%;
     margin: auto;
     text-align: center;
   }
@@ -15,6 +17,47 @@
       margin-bottom: 10px;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
+      .item-right-top{
+        position: absolute;
+        right:0;
+        top:0;
+        left: 40%;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 5px;
+        color:#fff;
+        background:-webkit-linear-gradient( right,rgba(0, 0, 0, 0.3) 30%,rgba(101, 101, 101, 0.2) 60%,rgba(201, 201, 201, 0.1) 90%,rgba(255, 255, 255, 0.0) 100%);
+        z-index: 1;
+        transition:all 0.2s linear 0.5s;
+      }
+      &:hover{
+        .item-copywriter{
+          transform: translateY(0);
+        }
+        .item-right-top{
+          z-index: -999;
+        }
+      }
+      .item-copywriter{
+        transition:all 0.2s linear 0.5s;
+        position: absolute;
+        right:0;
+        top:0;
+        left: 0;
+        padding:5px;
+        color:#fff;
+        z-index: 1;
+        transform: translateY(-100%);
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background-color: rgba(0,0,0,0.5);
+      }
       &:before{
         content: "";
         padding-top: 100%;
@@ -26,7 +69,7 @@
       .img-box{
         position: absolute;
         left:0;
-        right: 10px;
+        right: 0;
         top: 0;
         img{
           width: 100%;

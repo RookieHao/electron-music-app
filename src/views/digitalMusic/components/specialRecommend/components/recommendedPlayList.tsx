@@ -2,7 +2,9 @@
 
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
+
 import ElectronCard from '@components/electronCard'
+import SvgIcon from '@components/svgIcon'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
 
@@ -41,6 +43,11 @@ export default withRouter(
     generateItem = (item: ResultItem) => {
       return (
         <li key={item.id} className={RecommendedStyle['play-list-item']}>
+          <div className={RecommendedStyle['item-right-top']}>
+            <SvgIcon iconName="headset"></SvgIcon>
+            <span>{` ${~~(item.playCount / 10000)}万`}</span>
+          </div>
+          <div className={RecommendedStyle['item-copywriter']}>{item.copywriter}</div>
           <div className={RecommendedStyle['img-box']}>
             <img src={item.picUrl} alt="" />
           </div>
