@@ -7,7 +7,7 @@ import ElectronCard from '@components/electronCard'
 import SvgIcon from '@components/svgIcon'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
-
+import PlayBtn from '@components/play-btn'
 export interface IAppProps extends RouteComponentProps {
   title: string
 }
@@ -43,15 +43,18 @@ export default withRouter(
     generateItem = (item: ResultItem) => {
       return (
         <li key={item.id} className={RecommendedStyle['play-list-item']}>
-          <div className={RecommendedStyle['item-right-top']}>
-            <SvgIcon iconName="headset"></SvgIcon>
-            <span>{` ${~~(item.playCount / 10000)}万`}</span>
-          </div>
-          <div className={RecommendedStyle['item-copywriter']}>{item.copywriter}</div>
-          <div className={RecommendedStyle['img-box']}>
+          <div className={RecommendedStyle['item-box']}>
+            <div className={RecommendedStyle['item-right-top']}>
+              <SvgIcon iconName="headset"></SvgIcon>
+              <span>{` ${~~(item.playCount / 10000)}万`}</span>
+            </div>
+            <div className={RecommendedStyle['item-copywriter']}>
+              <span className="line-clamp-ellipsis-2">{item.copywriter}</span>
+            </div>
             <img src={item.picUrl} alt="" />
+            <PlayBtn className={RecommendedStyle['item-play-btn']} type="list" id={item.id}></PlayBtn>
           </div>
-          <p className={RecommendedStyle['item-name']}>{item.name}</p>
+          <p className={`line-clamp-ellipsis-2 ${RecommendedStyle['item-name']}`}>{item.name}</p>
         </li>
       )
     }

@@ -3,28 +3,19 @@
 import React, {Component} from 'react'
 import {remote} from 'electron'
 
-import {observer} from 'mobx-react'
-
 import {Icon} from 'antd'
 import Navigation from '@components/navigation'
 import TopNavStyle from '../styles/appTopNav.scss'
 
-import {LayOutType} from '@/store/mobx/index'
+import {observer} from 'mobx-react'
+import {LayOutStore} from '@store/mobx'
 
 const currentWindow = remote.getCurrentWindow()
 
-interface TopNavProps {
-  store: LayOutType
-}
-
 @observer
-export default class TopNav extends Component<TopNavProps> {
-  constructor(props: TopNavProps) {
-    super(props)
-    this.setIsMaximized()
-  }
-
+export default class TopNav extends Component {
   componentDidMount() {
+    this.setIsMaximized()
     currentWindow.addListener('maximize', this.setIsMaximized)
     currentWindow.addListener('unmaximize', this.setIsMaximized)
   }
@@ -33,7 +24,7 @@ export default class TopNav extends Component<TopNavProps> {
     currentWindow.removeAllListeners()
   }
 
-  setIsMaximized = () => this.props.store.setMaximized(currentWindow.isMaximized())
+  setIsMaximized = () => LayOutStore.setMaximized(currentWindow.isMaximized())
 
   // 最大化
   maximize = () => currentWindow.maximize()
@@ -48,14 +39,13 @@ export default class TopNav extends Component<TopNavProps> {
   closeWindow = () => currentWindow.close()
 
   render() {
-    const {isMaximized} = this.props.store
     return (
       <header className={TopNavStyle['top-nav']}>
         <Navigation></Navigation>
         {location.hash}
         <div className={`operate-btn ${TopNavStyle['window-operate']}`}>
           <Icon type="line" title="最小化" className={TopNavStyle.icon} onClick={() => this.minimize()} />
-          {isMaximized ? (
+          {LayOutStore.isMaximized ? (
             <Icon type="switcher" title="还原" className={TopNavStyle.icon} onClick={() => this.unmaximize()} />
           ) : (
             <Icon type="border" title="最大化" className={TopNavStyle.icon} onClick={() => this.maximize()} />

@@ -1,51 +1,64 @@
 /** @format */
 
 import React, {Component} from 'react'
-import {withRouter, RouteComponentProps} from 'react-router-dom'
-
+import {Icon} from 'antd'
+import SvgIcon from '@components/svgIcon'
 import PLAY_BTN from './index.scss'
-
-// enum btnType{
-//   'ONLY_PLAY' = 'play', // 播放单曲
-//   'PLAY_ALL' = 'all',  // 播放列表
-//   'WITH_ROUTER' = 'with_route',
-// }
-
-enum btnType {
-  ONLY_PLAY, // 播放单曲
-  PLAY_ALL, // 播放列表
-  WITH_ROUTER,
+import {PlayStore} from '@store/mobx'
+interface BtnProps {
+  className?: string
+  type?: 'single' | 'list'
+  id: number
 }
 
-interface BtnProps extends RouteComponentProps {
-  type?: number
-  mid?: number
-  route?: string
+export interface MusicInfoType {
+  name: string
+  id: number
+} // 歌曲列表中，歌曲信息type
+
+export default class index extends Component<BtnProps, {result: MusicInfoType[]}> {
+  static defaultProps = {type: 'list'}
+  constructor(props: BtnProps) {
+    super(props)
+    this.state = {
+      result: [],
+    }
+  }
+
+  async componentDidMount() {
+    let {playlist} = ((await PlayStore.getPlayListDetail(this.props.id)) as unknown) as ResultList
+    this.setState({result: playlist.tracks})
+  }
+
+  btnClick = async () => {
+    PlayStore.setPlayList(this.state.result)
+  }
+
+  render() {
+    return (
+      <div className={`${PLAY_BTN['play-btn']} ${this.props.className}`}>
+        {this.state.result && this.state.result.length ? (
+          <div className={PLAY_BTN['btn']} onClick={this.btnClick}>
+            {/* <Icon type="play-circle" theme="outlined" /> */}
+            <SvgIcon iconName="play"></SvgIcon>
+          </div>
+        ) : (
+          <Icon type="loading" />
+        )}
+      </div>
+    )
+  }
 }
 
-export default withRouter(
-  class index extends Component<BtnProps> {
-    static defaultProps = {
-      type: 0,
-    }
-    public type: string
+interface ResultList {
+  code: number
+  playlist: PlaylistType
+  privileges: any[]
+}
 
-    constructor(props: BtnProps) {
-      super(props)
-      this.type = btnType[props.type || 0]
-    }
-
-    componentDidMount() {}
-
-    btnClick = async () => {}
-
-    render() {
-      return (
-        <div className={PLAY_BTN['play-btn']}>
-          <audio src=""></audio>
-          <div className={PLAY_BTN['btn']} onClick={this.btnClick}></div>
-        </div>
-      )
-    }
-  },
-)
+type PlaylistType = {
+  id: number // 歌单id
+  description: string // 歌单描述
+  trackIds: {id: number; v: number; alg: any}[] // 歌单歌曲列表Id
+  tracks: MusicInfoType[] // 歌单歌曲列表
+}

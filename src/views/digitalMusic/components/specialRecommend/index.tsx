@@ -44,10 +44,7 @@ const RecommendedModules = [
   // },
 ]
 
-export default class index extends Component<{}> {
-  constructor(props: {}) {
-    super(props)
-  }
+export default class index extends Component {
   render() {
     return (
       <div className={RecommendedStyle.special}>

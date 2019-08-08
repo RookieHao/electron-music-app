@@ -22,7 +22,7 @@ let mainWindow: BrowserWindow | null;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1022,
+    width: 1024,
     height: 670,
     minWidth:1024,
     minHeight:670,

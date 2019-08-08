@@ -11,10 +11,11 @@ interface CssExports {
   'fm-item-name': string
   'fm-list': string
   'fm-list-item': string
-  'img-box': string
+  'item-box': string
   'item-copywriter': string
   'item-img-box': string
   'item-name': string
+  'item-play-btn': string
   'item-right-top': string
   'latest-list': string
   'latest-list-group': string

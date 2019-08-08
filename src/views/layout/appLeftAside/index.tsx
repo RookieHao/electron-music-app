@@ -95,7 +95,6 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
     const RegExpActiveName = /^\/([^\/]*)/
     let activeItemKeyEXEC = RegExpActiveName.exec(activeItemKey)
     let ItemKeyEXEC = RegExpActiveName.exec(key)
-    // console.log(activeItemKeyEXEC,ItemKeyEXEC)
     return activeItemKeyEXEC && ItemKeyEXEC && activeItemKeyEXEC[1] === ItemKeyEXEC[1]
   }
 
@@ -129,7 +128,6 @@ class LeftAside extends Component<RouteComponentProps, StateTypes> {
         )
       }
     })
-
     return generateMenuItems
   }
 

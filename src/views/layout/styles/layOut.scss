@@ -14,18 +14,24 @@
 .left-aside{
   height: calc(100vh - 50px);
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   background-color: $aside-bg-color;
 }
 
 .main-content{
   margin-top: 50px;
   height: calc(100vh - 100px);
+  background-color: $color-FAFAFA;
 }
 
 .footer{
-  height: 49px;
-  line-height: 49px;
+  height: 50px;
+  line-height: 50px;
   padding:0 15px;
-  border-top:1px solid $aside-border-color;
+  border-top:border-line();
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index: 999999;
 }

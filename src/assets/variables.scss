@@ -9,6 +9,8 @@ $font-color-000:#000;
 $font-color-eee:#EEE;
 $boder-color-cecece:#CECECE;
 $boder-color-dedede:#DEDEDE;
+$color-FAFAFA:#FAFAFA;
+$bg-color-F2F2F4:#F2F2F4;
 
 /*** header ****/
 $header-input-placeholder-color:#C77373; // header 搜索框 placeholder-color
@@ -36,6 +38,6 @@ $font-size-20:20px;
 $font-size-22:22px;
 
 /***  boder  ***/
-@function boder-line($size:'1px',$type:'solid',$color:$boder-color-dedede){
+@function border-line($size:'1px',$type:'solid',$color:$boder-color-dedede){
   @return #{$size $type $color}
 }

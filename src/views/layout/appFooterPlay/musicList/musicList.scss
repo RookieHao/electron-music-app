@@ -1,0 +1,67 @@
+.music-list {
+  position: fixed;
+  top:20vh;
+  right:0;
+  bottom:50px;
+  z-index: 1;
+  width: 580px;
+  background: $color-FAFAFA;
+  font-size: $font-size-14;
+  line-height: 1.5em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -1px -1px 3px 0 #9c9898;
+  .list-header{
+    .top-tab{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $bg-color-F2F2F4;
+      padding: 8px 0;
+      border-bottom: border-line();
+      .tab-group{
+        // margin-left: auto;
+        flex: 1;
+        text-align: center;
+      }
+      .close-btn{
+        // margin-left: auto;
+        padding:0 8px;
+        cursor: pointer;
+      }
+    }
+    .operate-area{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px;
+      font-size: 12px;
+      line-height: 1em;
+      border-bottom: border-line();
+      .operate-btn{
+        display: inline-block;
+        cursor: pointer;
+        &:first-child{
+          &::after{
+            vertical-align: top;
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            margin-left: 8px;
+            border-right: border-line($color:$font-color-999);
+            content: '';
+          }
+        }
+        &:last-child{
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+  .list-content{
+    flex:1;
+    padding:0 20px;
+    overflow: auto;
+  }
+}

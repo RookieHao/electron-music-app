@@ -6,7 +6,6 @@ import AppTopNav from './appTopNav'
 import AppLeftAside from './appLeftAside'
 import AppFooterPlay from './appFooterPlay'
 import layOutStyle from './styles/layOut.scss'
-import {LayOutStore, PlayStore} from '@store/mobx'
 
 import {Layout} from 'antd'
 
@@ -25,13 +24,13 @@ export default class LayOut extends Component {
           </Sider>
           <Layout>
             <Header className={layOutStyle.header}>
-              <AppTopNav store={LayOutStore} />
+              <AppTopNav />
             </Header>
             <Content className={layOutStyle['main-content']}>{this.props.children}</Content>
           </Layout>
         </Layout>
         <Footer className={layOutStyle.footer}>
-          <AppFooterPlay store={PlayStore} />
+          <AppFooterPlay />
         </Footer>
       </Layout>
     )
