@@ -5,10 +5,10 @@ import {withRouter, RouteComponentProps} from 'react-router-dom'
 import ElectronCard from '@components/electronCard'
 import RecommendedApi from '@api/digital.music.recommended'
 
-export interface IAppProps extends RouteComponentProps {
+interface IAppProps extends RouteComponentProps {
   title: string
 }
-export interface IAppState {}
+interface IAppState {}
 
 export default withRouter(
   class App extends Component<IAppProps, IAppState> {

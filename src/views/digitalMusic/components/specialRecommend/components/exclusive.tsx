@@ -5,11 +5,12 @@ import {withRouter, RouteComponentProps} from 'react-router-dom'
 import ElectronCard from '@components/electronCard'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
+import {ResultItem, ResultList} from '@declaration/exclusive'
 
-export interface IAppProps extends RouteComponentProps {
+interface IAppProps extends RouteComponentProps {
   title: string
 }
-export interface IAppState {
+interface IAppState {
   ResultList: ResultItem[]
 }
 
@@ -58,22 +59,3 @@ export default withRouter(
     }
   },
 )
-
-export interface ResultList {
-  code: number
-  name: string
-  result: ResultItem[]
-}
-export interface ResultItem {
-  alg: string
-  copywriter: string
-  height: number
-  id: number
-  name: string
-  picUrl: string
-  sPicUrl: string
-  type: number
-  url: string
-  videoId: string
-  width: number
-}

@@ -8,6 +8,8 @@ import SvgIcon from '@components/svgIcon'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
 import PlayBtn from '@components/play-btn'
+import {ResultItem, ResultList} from '@declaration/recommendedPlayList'
+
 export interface IAppProps extends RouteComponentProps {
   title: string
 }
@@ -70,21 +72,3 @@ export default withRouter(
     }
   },
 )
-
-export interface ResultList {
-  code: number
-  result: ResultItem[]
-}
-
-export interface ResultItem {
-  alg: string
-  canDislike: boolean
-  copywriter: string
-  highQuality: boolean
-  id: number
-  name: string
-  picUrl: string
-  playCount: number
-  trackCount: number
-  type: number
-}

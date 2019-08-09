@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import {Carousel} from 'antd'
 import RecommendedApi from '@api/digital.music.recommended'
 import RecommendedStyle from '../index.scss'
-
+import {BannersResponseData, bannerItem} from '@declaration/banner'
 export default class carousel extends Component<{title?: string}, StateTypes> {
   constructor(props: {}) {
     super(props)
@@ -43,22 +43,4 @@ export default class carousel extends Component<{title?: string}, StateTypes> {
 
 interface StateTypes {
   banners: bannerItem[]
-}
-
-interface BannersResponseData {
-  code: number
-  banners: bannerItem[]
-}
-
-interface bannerItem {
-  encodeId: string
-  exclusive: boolean // 独家
-  imageUrl: string
-  scm: string
-  targetId: number
-  targetType: number
-  titleColor: string
-  typeTitle: string
-  url: null
-  video: null
 }

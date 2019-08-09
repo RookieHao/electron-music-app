@@ -4,11 +4,13 @@ import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import ElectronCard from '@components/electronCard'
 import RecommendedApi from '@api/digital.music.recommended'
+import {ResultItem, ResultList} from '@declaration/recommendedMV'
 import RecommendedStyle from '../index.scss'
-export interface IAppProps extends RouteComponentProps {
+
+interface IAppProps extends RouteComponentProps {
   title: string
 }
-export interface IAppState {
+interface IAppState {
   ResultList: ResultItem[]
 }
 
@@ -59,24 +61,3 @@ export default withRouter(
     }
   },
 )
-
-export interface ResultList {
-  code: number
-  category: number
-  result: ResultItem[]
-}
-export interface ResultItem {
-  alg: string
-  artistId: number
-  artistName: string
-  artists: {id: number; name: string}[]
-  canDislike: boolean
-  copywriter: string
-  duration: number
-  id: number
-  name: string
-  picUrl: string
-  playCount: number
-  subed: boolean
-  type: number
-}

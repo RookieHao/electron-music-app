@@ -23,7 +23,7 @@ export default withRouter(
   },
 )
 
-export interface cardInfoProps extends RouteComponentProps {
+interface cardInfoProps extends RouteComponentProps {
   'card-title': string
   toMore: () => void
 }

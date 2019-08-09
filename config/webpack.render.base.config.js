@@ -14,7 +14,8 @@ module.exports = {
       '@components': resolve("src/components"),
       '@store': resolve("src/store"),
       '@views': resolve("src/views"),
-      '@assets': resolve("src/assets")
+      '@assets': resolve("src/assets"),
+      '@declaration': resolve("src/declaration")
     }
   },
   module:{

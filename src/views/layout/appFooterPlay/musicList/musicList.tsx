@@ -25,29 +25,36 @@ class MusicList extends Component<MusicListProps, MusicListState> {
     }
   }
 
-  radioChange = (e: any) => {
-    this.setState({radioValue: e.target.value})
-  }
-
-  generatePlayList() {
-    if (this.state.radioValue === 'A') {
-      return PlayStore.playList.map(item => {
-        return <div key={item.id}>{item.name}</div>
-      })
-    } else {
-      return PlayStore.playPrevList.map(item => {
-        return <div key={item.id}>{item.name}</div>
+  componentWillReceiveProps() {
+    if (!this.props.showList) {
+      this.setState({
+        radioValue: 'A',
       })
     }
   }
 
+  radioChange = (e: any) => {
+    this.setState({radioValue: e.target.value})
+  }
+
+  generatePlayList(musicList: any) {
+    return musicList.map((item: any) => {
+      return <div key={item.id}>{item.name}</div>
+    })
+  }
+
   listContentClick = (event: any) => event.nativeEvent.stopImmediatePropagation()
 
-  clearList = () => PlayStore.setPlayList([])
+  clearList = () => {
+    let {radioValue} = this.state
+    radioValue === 'A' ? PlayStore.clearPlayList() : PlayStore.clearPrevPlayList()
+  }
 
   render() {
     const {showList, close} = this.props
     const {radioValue} = this.state
+    let musicList = this.state.radioValue === 'A' ? PlayStore.playList.tracks : PlayStore.playPrevList.tracks
+    let total = musicList.length
     return (
       <div>
         {showList && (
@@ -70,20 +77,20 @@ class MusicList extends Component<MusicListProps, MusicListState> {
                 </div>
               </div>
               <div className={MusicListStyle['operate-area']}>
-                <div>总{PlayStore.playList.length}首</div>
+                <div>总{total}首</div>
                 <div>
                   {radioValue === 'A' && (
                     <span className={MusicListStyle['operate-btn']}>
-                      <Icon type="folder-add" /> 收藏全部{' '}
+                      <Icon type="folder-add" /> 收藏全部
                     </span>
                   )}
                   <span className={MusicListStyle['operate-btn']} onClick={this.clearList}>
-                    <Icon type="delete" /> 清空{' '}
+                    <Icon type="delete" /> 清空
                   </span>
                 </div>
               </div>
             </div>
-            <div className={MusicListStyle['list-content']}>{this.generatePlayList()}</div>
+            <div className={MusicListStyle['list-content']}>{this.generatePlayList(musicList)}</div>
           </div>
         )}
       </div>

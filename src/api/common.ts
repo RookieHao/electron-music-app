@@ -19,7 +19,17 @@ export function getPlayListDetail(id: number) {
     params: {id},
   })
 }
+// 获取歌曲详情
+export function getMusicDetail(ids: string) {
+  return request({
+    url: 'song/detail',
+    method: 'GET',
+    params: {ids},
+  })
+}
+
 export default {
   getMusicAudio,
   getPlayListDetail,
+  getMusicDetail,
 }
