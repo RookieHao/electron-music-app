@@ -9,7 +9,6 @@ const meger = require("webpack-merge");
 const common = require("./webpack.render.base.config");
 
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const notifier = require("node-notifier");
 
 console.log(
   "dev======================================================================================>"
@@ -55,12 +54,16 @@ module.exports = meger(common, {
       },
       clearConsole: true,
       onErrors(severity, errors) {
-        const error = errors[0];
+        const notifier = require('node-notifier')
+        if (severity !== 'error') return
+        const error = errors[0]
+        const filename = error.file && error.file.split('!').pop()
         notifier.notify({
-          title: "出错啦",
-          message: severity + ": " + error.name,
-          subtitle: error.file || ""
-        });
+          title: packageConfig.name,
+          message: severity + ': ' + error.name,
+          subtitle: filename || '',
+          icon: path.join('public/resources/icon.png')
+        })
       }
     })
   ]

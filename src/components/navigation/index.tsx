@@ -6,13 +6,13 @@ import {Icon} from 'antd'
 import addClassName from 'classnames'
 import navigationStyle from './index.scss'
 
-interface StateTypes {
+interface StateType {
   activeRouteNumber: number
   historyLength: number
 }
 
 export default withRouter(
-  class index extends Component<RouteComponentProps, StateTypes> {
+  class index extends Component<RouteComponentProps, StateType> {
     constructor(props: RouteComponentProps) {
       super(props)
       this.state = {

@@ -7,7 +7,7 @@ interface IconProps {
 
 export default function SvgIcon(props: IconProps) {
   return (
-    <svg aria-hidden="true" width="1em" height="1em" style={{margin: '.1em'}}>
+    <svg aria-hidden="true" width="1em" height="1em">
       <use xlinkHref={'#icon-' + props.iconName}></use>
     </svg>
   )

@@ -5,6 +5,8 @@ import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {observer} from 'mobx-react'
 import {PlayStore} from '@store/mobx'
 import {Icon, Radio} from 'antd'
+import {PlaylistType, MusicInfoType} from '@declaration/music-list'
+import {fomatterTime} from '@utils/utils'
 import MusicListStyle from './musicList.scss'
 
 interface MusicListProps extends RouteComponentProps {
@@ -14,6 +16,7 @@ interface MusicListProps extends RouteComponentProps {
 
 interface MusicListState {
   radioValue: string
+  activeIndex: string | null
 }
 
 @observer
@@ -22,6 +25,7 @@ class MusicList extends Component<MusicListProps, MusicListState> {
     super(props)
     this.state = {
       radioValue: 'A',
+      activeIndex: 'A1',
     }
   }
 
@@ -33,17 +37,47 @@ class MusicList extends Component<MusicListProps, MusicListState> {
     }
   }
 
+  playMusic = (playerId: number, playingIndex: number) => {
+    if (playerId !== PlayStore.playerId) {
+      PlayStore.setPlayMusic(playerId, playingIndex)
+    }
+  }
+
   radioChange = (e: any) => {
     this.setState({radioValue: e.target.value})
   }
 
-  generatePlayList(musicList: any) {
-    return musicList.map((item: any) => {
-      return <div key={item.id}>{item.name}</div>
+  generatePlayList(musicList: PlaylistType) {
+    let {activeIndex, radioValue} = this.state
+    return musicList.tracks.map((item: MusicInfoType, index: number) => {
+      return (
+        <div
+          key={item.id}
+          className={`${MusicListStyle['music-item']} ${
+            activeIndex === radioValue + index ? MusicListStyle.activeItem : ''
+          }`}
+          onClick={() => this.listItemClick(index)}
+          onDoubleClick={() => this.playMusic(item.id, index)}>
+          <div className={MusicListStyle['music-name']}>{item.name}</div>
+          <div>
+            <span>{item.ar.map(ai => ai.name).join('/')}</span>
+          </div>
+          <div title={musicList.name}>
+            <span>
+              <Icon type="link" />
+            </span>
+          </div>
+          <div>{fomatterTime(item.dt)}</div>
+        </div>
+      )
     })
   }
 
   listContentClick = (event: any) => event.nativeEvent.stopImmediatePropagation()
+
+  listItemClick = (index: number) => {
+    this.setState({activeIndex: this.state.radioValue + index})
+  }
 
   clearList = () => {
     let {radioValue} = this.state
@@ -53,8 +87,8 @@ class MusicList extends Component<MusicListProps, MusicListState> {
   render() {
     const {showList, close} = this.props
     const {radioValue} = this.state
-    let musicList = this.state.radioValue === 'A' ? PlayStore.playList.tracks : PlayStore.playPrevList.tracks
-    let total = musicList.length
+    let musicList = this.state.radioValue === 'A' ? PlayStore.playList : PlayStore.playPrevList
+    let total = musicList.tracks.length
     return (
       <div>
         {showList && (

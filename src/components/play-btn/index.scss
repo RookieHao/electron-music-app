@@ -1,13 +1,17 @@
 .play-btn{
   .btn{
     cursor: pointer;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 24px;
     width: 24px;
     font-size: 24px;
-    border-radius: 16px;
+    border-radius: 50%;
     color: #fff;
     fill:#fff;
     line-height: 24px;
+    text-align: center;
+    background: radial-gradient(circle at 50%,  rgba(20,20,20,0.3) 40%, transparent 60%);
   }
 }

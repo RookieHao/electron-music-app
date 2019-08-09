@@ -11,7 +11,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: -1px -1px 3px 0 #9c9898;
+  box-shadow: -1px -1px 3px 0 $shadow-color;
   .list-header{
     .top-tab{
       display: flex;
@@ -61,7 +61,25 @@
   }
   .list-content{
     flex:1;
-    padding:0 20px;
     overflow: auto;
+    .music-item{
+      display: flex;
+      align-items: center;
+      padding:0 20px;
+      font-size: $font-size-13;
+      .music-name{
+        flex:1;
+        color:$font-color-000;
+      }
+      div{
+        padding:3px 5px;
+      }
+      span{
+        cursor: pointer;
+      }
+      &.activeItem{
+        background-color: $bg-color-E3E3E5;
+      }
+    }
   }
 }
