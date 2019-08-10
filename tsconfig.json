@@ -13,7 +13,7 @@
     "target": "esnext",
     "allowJs": true,
     "strict": true,
-    "module": "umd",
+    "module": "commonjs",
     "jsx": "react",
     "outDir": "dist",
     "removeComments":true,

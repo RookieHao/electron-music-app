@@ -7,7 +7,7 @@
   width: 580px;
   background: $color-FAFAFA;
   font-size: $font-size-14;
-  line-height: 1.5em;
+  line-height: 1;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -65,8 +65,17 @@
     .music-item{
       display: flex;
       align-items: center;
-      padding:0 20px;
+      padding: 5px 20px 5px 35px;
       font-size: $font-size-13;
+      position: relative;
+      .playing-icon{
+        position: absolute;
+        left:10px;
+        width:1.5em;
+        height:1.5em;
+        padding:0;
+        z-index: 2;
+      }
       .music-name{
         flex:1;
         color:$font-color-000;
@@ -76,6 +85,9 @@
       }
       span{
         cursor: pointer;
+      }
+      &:hover{
+        background-color: $bg-color-EBECED;
       }
       &.activeItem{
         background-color: $bg-color-E3E3E5;

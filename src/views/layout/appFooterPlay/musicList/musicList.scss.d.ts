@@ -12,6 +12,7 @@ interface CssExports {
   'music-name': string
   'operate-area': string
   'operate-btn': string
+  'playing-icon': string
   'tab-group': string
   'top-tab': string
 }

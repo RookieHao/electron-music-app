@@ -29,7 +29,7 @@ export default class LayOut extends Component {
             <Content className={layOutStyle['main-content']}>{this.props.children}</Content>
           </Layout>
         </Layout>
-        <Footer className={layOutStyle.footer}>
+        <Footer className={layOutStyle.footer} onClick={e => e.nativeEvent.stopImmediatePropagation()}>
           <AppFooterPlay />
         </Footer>
       </Layout>

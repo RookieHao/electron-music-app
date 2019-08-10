@@ -2,7 +2,7 @@
 
 import {observable, action, runInAction} from 'mobx'
 import commonAPI from '@api/common'
-import {PlaylistType, musicResourceType} from '@declaration/music-list'
+import {PlaylistType, musicResourceType, MusicInfoType} from '@declaration/music-list'
 
 export class PlayType {
   public initData = {
@@ -17,7 +17,8 @@ export class PlayType {
 
   @observable playerStatus: boolean = false // 播放器状态
   @observable playerId: number | null = null // 当前播放的音乐Id
-  @observable playingInfo: musicResourceType = [] // 当前播放的音乐info
+  @observable playingResources: musicResourceType = [] // 当前播放音乐的资源
+  @observable playingInfoDetail: MusicInfoType = {name: '', id: 0, ar: [], dt: 0} // 当前播放音乐的资源
   @observable playingIndex: number | null = 0 // 当前播放的音乐在列表playList中的位置
   @observable playList: PlaylistType = this.initData
   @observable playPrevList: PlaylistType = this.initData
@@ -29,13 +30,18 @@ export class PlayType {
 
   @action.bound // 列表双击播放音乐
   async setPlayMusic(playerId: number, playingIndex: number) {
+    this.playingIndex = null
+    this.playerId = 0
+    this.playingResources = []
+    this.playingInfoDetail = {name: '', id: 0, ar: [], dt: 0}
     try {
       let {code, data} = ((await this.getMusicAudio(playerId)) as unknown) as {code: number; data: any[]}
       if (code === 200 && data && data.length) {
         runInAction(() => {
           this.playingIndex = playingIndex
           this.playerId = playerId
-          this.playingInfo = data
+          this.playingResources = data
+          this.playingInfoDetail = this.playList.tracks[playingIndex]
         })
       }
     } catch (error) {
@@ -43,10 +49,20 @@ export class PlayType {
     }
   }
 
-  @action.bound // 设置当前播放的音乐
-  setPlayingInfo(Info: musicResourceType) {
-    this.playingInfo = Info
+  @action.bound // 获取并设置当前播放的音乐
+  async setPlayingInfo(playerId: number) {
+    try {
+      let {code, data} = ((await this.getMusicAudio(playerId)) as unknown) as {code: number; data: any[]}
+      if (code === 200 && data && data.length) {
+        runInAction(() => {
+          this.playingResources = data
+        })
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
+
   @action.bound // 设置播放列表
   setPlayList(PlayList: PlaylistType) {
     if (PlayList.id !== this.playList.id) {
@@ -58,12 +74,57 @@ export class PlayType {
   @action.bound // 清空播放列表
   clearPlayList() {
     this.playList = this.initData
-    this.playingInfo = []
+    this.playingResources = []
+    this.playingIndex = null
+    this.playerId = 0
+    this.playerStatus = false
+    this.playingInfoDetail = {name: '', id: 0, ar: [], dt: 0}
   }
 
   @action.bound // 清空历史记录
   clearPrevPlayList() {
     this.playPrevList = this.initData
+  }
+
+  @action.bound
+  changeStatus(status: boolean) {
+    this.playerStatus = status
+  }
+
+  @action.bound // 上一曲
+  onPrev() {
+    let {tracks} = this.playList
+    let index = this.playingIndex
+    if (tracks.length) {
+      if (typeof index === 'number') {
+        if (index > 0) {
+          index--
+        } else {
+          index = tracks.length - 1
+        }
+      } else {
+        index = tracks.length - 1
+      }
+      this.setPlayMusic(tracks[index].id, index)
+    }
+  }
+
+  @action.bound // 下一曲
+  onNext() {
+    let {tracks} = this.playList
+    let index = this.playingIndex
+    if (tracks.length) {
+      if (typeof index === 'number') {
+        if (index < tracks.length - 1) {
+          index++
+        } else {
+          index = 0
+        }
+      } else {
+        index = 0
+      }
+      this.setPlayMusic(tracks[index].id, index)
+    }
   }
 
   // @action.bound // 获取歌曲详情

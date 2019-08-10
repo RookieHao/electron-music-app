@@ -1,0 +1,39 @@
+.player-controller{
+  display: flex;
+  flex:1;
+  align-items: center;
+  line-height: 1;
+  .change-control{
+    display: flex;
+    color:$font-color-fff;
+    text-align: center;
+    font-size: 18px;
+    .control-item{
+      width:28px;
+      height:28px;
+      border-radius: 50%;
+      margin-left: 15px;
+      padding:5px;
+      background: $primary-color;
+      cursor: pointer;
+    }
+  }
+  .progress-control{
+    display: flex;
+    flex:1;
+    align-items: center;
+    margin:0 15px;
+    .time{
+      margin-right: 5px;
+    }
+    .progress{
+      flex:1;
+    }
+    .totalTime{
+      margin-left: 5px;
+    }
+    .volume-control{
+      margin-left: 15px;
+    }
+  }
+}

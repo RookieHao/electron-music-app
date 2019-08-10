@@ -2,13 +2,11 @@
 
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
-import {observer} from 'mobx-react'
+import Player from './player'
 import {MusicList} from './musicList'
+
 import AppFooterStyle from '../styles/appFooterPlay.scss'
-import {PlayStore} from '@store/mobx'
-@observer
-class index extends Component<RouteComponentProps, {showList: boolean}> {
-  audioEle: HTMLAudioElement | null = null
+class AppFooter extends Component<RouteComponentProps, {showList: boolean}> {
   constructor(props: RouteComponentProps) {
     super(props)
     this.state = {
@@ -32,20 +30,13 @@ class index extends Component<RouteComponentProps, {showList: boolean}> {
     let {showList} = this.state
     return (
       <div className={AppFooterStyle['app-footer']}>
-        <audio
-          autoPlay
-          key={PlayStore.playerId || 0}
-          data-id={PlayStore.playerId}
-          ref={ref => (this.audioEle = ref)}
-          loop>
-          {PlayStore.playingInfo.map(item => (
-            <source key={item.url} src={item.url} type={'audio/' + item.type} />
-          ))}
-        </audio>
+        <div style={{display: 'flex', flex: '1'}}>
+          <Player></Player>
+        </div>
         <span onClick={this.toggle}>列表</span>
         <MusicList showList={showList} close={this.hide}></MusicList>
       </div>
     )
   }
 }
-export default withRouter(index)
+export default withRouter(AppFooter)

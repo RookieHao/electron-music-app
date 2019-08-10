@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {observer} from 'mobx-react'
 import {PlayStore} from '@store/mobx'
+import {PlayingIcon} from '@components/playingIcon'
 import {Icon, Radio} from 'antd'
 import {PlaylistType, MusicInfoType} from '@declaration/music-list'
 import {fomatterTime} from '@utils/utils'
@@ -58,6 +59,11 @@ class MusicList extends Component<MusicListProps, MusicListState> {
           }`}
           onClick={() => this.listItemClick(index)}
           onDoubleClick={() => this.playMusic(item.id, index)}>
+          {PlayStore.playerId === item.id && (
+            <div className={MusicListStyle['playing-icon']}>
+              <PlayingIcon />
+            </div>
+          )}
           <div className={MusicListStyle['music-name']}>{item.name}</div>
           <div>
             <span>{item.ar.map(ai => ai.name).join('/')}</span>

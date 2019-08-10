@@ -8,10 +8,11 @@ export function fomatterTime(time: number) {
 }
 
 function padStartWithZero(s: Array<number | string>, n: number = 2) {
-  return s
-    .filter(Boolean)
-    .map(item => item.toString().padStart(n, '0'))
-    .join(':')
+  let ss = s.filter(Boolean)
+  if (ss.length === 1) {
+    ss.unshift(0)
+  }
+  return ss.map(item => item.toString().padStart(n, '0')).join(':')
 }
 
 export default {

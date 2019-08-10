@@ -1,7 +1,7 @@
 /** @format */
 
 import React, {Component} from 'react'
-import {Icon} from 'antd'
+import {Spin} from 'antd'
 import SvgIcon from '@components/svgIcon'
 import PLAY_BTN from './index.scss'
 import {PlayStore} from '@store/mobx'
@@ -41,7 +41,7 @@ export default class index extends Component<BtnProps, {result: PlaylistType}> {
             <SvgIcon iconName="play"></SvgIcon>
           </div>
         ) : (
-          <Icon type="loading" />
+          <Spin size="small" />
         )}
       </div>
     )
