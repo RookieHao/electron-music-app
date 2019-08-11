@@ -40,7 +40,7 @@ class Player extends Component<{}, {percent: number}> {
   }
 
   onListen = (currentTime: number) => {
-    this.setState({percent: currentTime})
+    this.setState({percent: Math.ceil(currentTime)})
     console.log(currentTime)
   }
 

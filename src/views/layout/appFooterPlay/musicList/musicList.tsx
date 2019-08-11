@@ -65,7 +65,7 @@ class MusicList extends Component<MusicListProps, MusicListState> {
             </div>
           )}
           <div className={MusicListStyle['music-name']}>{item.name}</div>
-          <div>
+          <div className={MusicListStyle['music-author']} title={item.ar.map(ai => ai.name).join('/')}>
             <span>{item.ar.map(ai => ai.name).join('/')}</span>
           </div>
           <div title={musicList.name}>

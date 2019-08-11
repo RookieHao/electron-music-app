@@ -7,6 +7,7 @@ interface CssExports {
   'close-btn': string
   'list-content': string
   'list-header': string
+  'music-author': string
   'music-item': string
   'music-list': string
   'music-name': string

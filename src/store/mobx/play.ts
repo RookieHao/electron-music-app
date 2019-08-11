@@ -36,13 +36,18 @@ export class PlayType {
     this.playingInfoDetail = {name: '', id: 0, ar: [], dt: 0}
     try {
       let {code, data} = ((await this.getMusicAudio(playerId)) as unknown) as {code: number; data: any[]}
-      if (code === 200 && data && data.length) {
+      if (code === 200 && data && data.length && data.some(e => e.url)) {
         runInAction(() => {
           this.playingIndex = playingIndex
           this.playerId = playerId
           this.playingResources = data
           this.playingInfoDetail = this.playList.tracks[playingIndex]
         })
+      } else {
+        playingIndex++
+        if (playingIndex < this.playList.tracks.length) {
+          this.setPlayMusic(this.playList.tracks[playingIndex].id, playingIndex)
+        }
       }
     } catch (error) {
       console.error(error)

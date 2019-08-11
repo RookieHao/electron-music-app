@@ -1,8 +1,8 @@
 .music-list {
   position: fixed;
-  top:20vh;
-  right:0;
-  bottom:50px;
+  top: 20vh;
+  right: 0;
+  bottom: 50px;
   z-index: 1;
   width: 580px;
   background: $color-FAFAFA;
@@ -12,26 +12,30 @@
   display: flex;
   flex-direction: column;
   box-shadow: -1px -1px 3px 0 $shadow-color;
-  .list-header{
-    .top-tab{
+
+  .list-header {
+    .top-tab {
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: $bg-color-F2F2F4;
       padding: 8px 0;
       border-bottom: border-line();
-      .tab-group{
+
+      .tab-group {
         // margin-left: auto;
         flex: 1;
         text-align: center;
       }
-      .close-btn{
+
+      .close-btn {
         // margin-left: auto;
-        padding:0 8px;
+        padding: 0 8px;
         cursor: pointer;
       }
     }
-    .operate-area{
+
+    .operate-area {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,11 +43,13 @@
       font-size: 12px;
       line-height: 1em;
       border-bottom: border-line();
-      .operate-btn{
+
+      .operate-btn {
         display: inline-block;
         cursor: pointer;
-        &:first-child{
-          &::after{
+
+        &:first-child {
+          &::after {
             vertical-align: top;
             display: inline-block;
             width: 2px;
@@ -53,43 +59,59 @@
             content: '';
           }
         }
-        &:last-child{
+
+        &:last-child {
           padding-left: 10px;
         }
       }
     }
   }
-  .list-content{
-    flex:1;
+
+  .list-content {
+    flex: 1;
     overflow: auto;
-    .music-item{
+
+    .music-item {
       display: flex;
       align-items: center;
       padding: 5px 20px 5px 35px;
       font-size: $font-size-13;
       position: relative;
-      .playing-icon{
+
+      .playing-icon {
         position: absolute;
-        left:10px;
-        width:1.5em;
-        height:1.5em;
-        padding:0;
+        left: 10px;
+        width: 1.5em;
+        height: 1.5em;
+        padding: 0;
         z-index: 2;
       }
-      .music-name{
-        flex:1;
-        color:$font-color-000;
+
+      .music-name {
+        flex: 1;
+        color: $font-color-000;
       }
-      div{
-        padding:3px 5px;
+
+      div {
+        padding: 3px 5px;
       }
-      span{
+
+      span {
         cursor: pointer;
       }
-      &:hover{
+
+      .music-author {
+        max-width: 150px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      &:hover {
         background-color: $bg-color-EBECED;
       }
-      &.activeItem{
+
+      &.activeItem {
         background-color: $bg-color-E3E3E5;
       }
     }

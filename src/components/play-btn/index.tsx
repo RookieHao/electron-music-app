@@ -27,8 +27,10 @@ export default class index extends Component<BtnProps, {result: PlaylistType}> {
   }
 
   btnClick = async () => {
-    PlayStore.setPlayList(this.state.result)
-    PlayStore.setPlayMusic(this.state.result.trackIds[0].id, 0)
+    if (this.props.id !== PlayStore.playList.id) {
+      PlayStore.setPlayList(this.state.result)
+      PlayStore.setPlayMusic(this.state.result.trackIds[0].id, 0)
+    }
   }
 
   render() {
