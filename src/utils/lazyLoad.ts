@@ -2,6 +2,7 @@
 
 import React, {ComponentType} from 'react'
 import Loadable, {LoadingComponentProps} from 'react-loadable'
+import {Spin} from 'antd'
 import {FunctionComponent} from 'react'
 
 export default (
@@ -20,5 +21,5 @@ export default (
   })
 
 function Loading(): JSX.Element {
-  return React.createElement('div', {}, 'loading...')
+  return React.createElement(Spin)
 }

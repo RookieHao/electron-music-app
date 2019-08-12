@@ -33,7 +33,37 @@
       margin-left: 5px;
     }
     .volume-control{
+      position: relative;
       margin-left: 15px;
+      .volume-control-slider{
+        display: none;
+        width:20px;
+        height:100px;
+        border-radius: 8px;
+        padding:8px 0;
+        z-index: 9999999999999;
+        :global{
+          .ant-slider-vertical{
+            margin:0 auto;
+          }
+          .ant-slider-rail{
+            background:rgb(155, 155, 153);
+          }
+        }
+      }
+      &:hover{
+        .volume-control-slider{
+          display: block;
+          position: absolute;
+          bottom: 110%;
+          left: -3px;
+        }
+      }
+    }
+    .play-mode{
+      margin:0 10px;
+      color:inherit;
+      fill:inherit;
     }
   }
 }

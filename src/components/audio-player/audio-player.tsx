@@ -58,11 +58,8 @@ class AudioPlayer extends Component<AudioPlayerProps> {
     }
   }
 
-  componentWillReceiveProps(nextProps: {volume: number}) {
-    this.updateVolume(nextProps.volume)
-  }
-
   setListenTrack() {
+    this.audioEl && this.props.onListen(this.audioEl.currentTime)
     if (!this.listenTracker) {
       const listenInterval = this.props.listenInterval
       this.listenTracker = setInterval(() => {
@@ -159,7 +156,7 @@ AudioPlayer.defaultProps = {
   src: undefined,
   style: {},
   title: '',
-  volume: 1.0,
+  volume: 0.5,
 }
 
 interface AudioPlayerProps {

@@ -7,12 +7,14 @@ export function fomatterTime(time: number) {
   return padStartWithZero([h, m, s])
 }
 
-function padStartWithZero(s: Array<number | string>, n: number = 2) {
-  let ss = s.filter(Boolean)
-  if (ss.length === 1) {
-    ss.unshift(0)
-  }
-  return ss.map(item => item.toString().padStart(n, '0')).join(':')
+function padStartWithZero(sss: Array<number | string>, n: number = 2) {
+  let [h, m, s] = sss
+  if (m === 0) m = '0'
+  if (s === 0) s = '0'
+  return [h, m, s]
+    .filter(Boolean)
+    .map(item => item.toString().padStart(n, '0'))
+    .join(':')
 }
 
 export default {

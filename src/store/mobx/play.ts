@@ -115,19 +115,35 @@ export class PlayType {
   }
 
   @action.bound // 下一曲
-  onNext() {
+  onNext(mode: 'single' | 'list' | 'loop' | 'random') {
     let {tracks} = this.playList
-    let index = this.playingIndex
     if (tracks.length) {
-      if (typeof index === 'number') {
-        if (index < tracks.length - 1) {
-          index++
-        } else {
+      let index = this.playingIndex
+      switch (mode) {
+        case 'single':
+        case 'list':
+          if (typeof index === 'number') {
+            index = ++index % tracks.length
+            if (index === 0) return
+          } else {
+            index = 0
+          }
+          break
+        case 'loop':
+          if (typeof index === 'number') {
+            index = ++index % tracks.length
+          } else {
+            index = 0
+          }
+          break
+        case 'random':
+          index = (Math.random() * tracks.length) | 0
+          break
+        default:
           index = 0
-        }
-      } else {
-        index = 0
+          break
       }
+      index = index || 0
       this.setPlayMusic(tracks[index].id, index)
     }
   }

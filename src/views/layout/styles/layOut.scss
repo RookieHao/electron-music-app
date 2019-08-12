@@ -8,7 +8,7 @@
   right:0;
   top:0;
   width:calc(100vw - 200px);
-  z-index: 999999;
+  z-index:99;
 }
 
 .left-aside{
@@ -26,12 +26,13 @@
 
 .footer{
   height: 50px;
-  line-height: 50px;
   padding:0 15px;
   border-top:border-line();
   position: fixed;
   bottom:0;
   left:0;
   right:0;
-  z-index: 999999;
+  z-index: 99;
+  display: flex;
+  align-items: center;
 }

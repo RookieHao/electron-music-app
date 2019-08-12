@@ -5,12 +5,14 @@
 interface CssExports {
   'change-control': string
   'control-item': string
+  'play-mode': string
   'player-controller': string
   progress: string
   'progress-control': string
   time: string
   totalTime: string
   'volume-control': string
+  'volume-control-slider': string
 }
 declare var cssExports: CssExports
 export = cssExports

@@ -12,7 +12,7 @@ interface BtnProps {
   id: number
 }
 
-export default class index extends Component<BtnProps, {result: PlaylistType}> {
+export default class PlayBtn extends Component<BtnProps, {result: PlaylistType}> {
   static defaultProps = {type: 'list'}
   constructor(props: BtnProps) {
     super(props)
@@ -22,8 +22,12 @@ export default class index extends Component<BtnProps, {result: PlaylistType}> {
   }
 
   async componentDidMount() {
-    let {playlist} = ((await PlayStore.getPlayListDetail(this.props.id)) as unknown) as ResultList
-    this.setState({result: playlist})
+    try {
+      let {playlist} = ((await PlayStore.getPlayListDetail(this.props.id)) as unknown) as ResultList
+      this.setState({result: playlist})
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   btnClick = async () => {
