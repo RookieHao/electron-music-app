@@ -117,8 +117,41 @@
   .latest-list{
     display: flex;
     .latest-list-group{
+      flex:1;
       .latest-list-item{
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        padding:5px 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &>div{
+          margin-left:10px;
+        }
+        .latest-item-img-box{
+          position: relative;
+          width: 35px;
+          height: 35px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+          .latest-play-btn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+        .color-888{
+          color:$font-color-888;
+        }
+        .color-333{
+          color:$font-color-333;
+          font-size: 14px;
+        }
       }
     }
   }

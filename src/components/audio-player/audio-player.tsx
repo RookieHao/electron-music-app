@@ -58,6 +58,10 @@ class AudioPlayer extends Component<AudioPlayerProps> {
     }
   }
 
+  componentWillUnmount() {
+    this.props.onAbort()
+  }
+
   setListenTrack() {
     this.audioEl && this.props.onListen(this.audioEl.currentTime)
     if (!this.listenTracker) {

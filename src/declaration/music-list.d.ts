@@ -9,6 +9,7 @@ export interface MusicInfoType {
   id: number
   ar: arItemType[]
   dt: number
+  source: {name: string; path: string}
 } // 歌曲列表中，歌曲信息type
 
 export type trackId = {
@@ -17,7 +18,7 @@ export type trackId = {
   alg: any
 }
 
-export type PlaylistType = {
+export type ResultPlayList = {
   id: number // 歌单id
   subscribers: subscribersitem[]
   subscribed: boolean
@@ -64,4 +65,11 @@ type musicDetaiType = {
   url: string
   type: string
   md5?: string
+}
+
+export interface PersonalizeDetail {
+  // 歌单详情返回结果
+  code: number
+  playlist: ResultPlayList
+  privileges: any[]
 }

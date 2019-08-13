@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 
-export default class index extends Component {
+export default class LeaderBoard extends Component {
   render() {
     return <div>排行榜</div>
   }

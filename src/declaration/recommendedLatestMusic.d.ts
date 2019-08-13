@@ -15,13 +15,49 @@ export interface ResultItem {
 }
 
 type StringAllNull = string | null
+
 type aliasList = []
-type musicType = {name: StringAllNull; id: number; size: number; extension: string; sr: number; [propName: string]: any}
+
+type musicType = {
+  bitrate: number
+  dfsId: number
+  extension: string
+  id: number
+  name: StringAllNull
+  playTime: number
+  size: number
+  sr: number
+  volumeDelta: number
+}
+
+export interface artistItem {
+  albumSize: number
+  alias: []
+  briefDesc: string
+  id: number
+  img1v1Id: number
+  img1v1Url: string
+  musicSize: number
+  name: string
+  picId: number
+  picUrl: string
+  topicPerson: number
+  trans: string
+}
 
 export interface SongItem {
-  album: {name: string; id: number; type: string; size: number; picId: number; [propName: string]: any}
+  album: {
+    name: string
+    id: number
+    type: string
+    size: number
+    picId: number
+    picUrl: string
+    [propName: string]: any
+    artists: artistItem[]
+  }
   alias: aliasList
-  artists: [{}]
+  artists: artistItem[]
   audition: StringAllNull
   bMusic: musicType
   commentThreadId: string

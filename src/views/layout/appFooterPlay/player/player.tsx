@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import {PlayStore} from '@store/mobx'
 import {AudioPlayer} from '@components/audio-player'
-import SvgIcon from '@components/svgIcon'
+import {SvgIcon} from '@components/svgIcon'
 import {Icon, Slider, Tooltip} from 'antd'
 import {fomatterTime} from '@utils/utils'
 import PlayerStyle from './player.scss'
@@ -69,6 +69,10 @@ class Player extends Component<{}, StateType> {
 
   onEnded = () => {
     this.setState({percent: this.state.duration}, () => this.onNext())
+  }
+
+  onAbort = () => {
+    this.setState({percent: 0})
   }
 
   onListen = (currentTime: number) => {
@@ -151,7 +155,9 @@ class Player extends Component<{}, StateType> {
           onPlay={this.onPlay}
           onPause={this.onPause}
           onEnded={this.onEnded}
-          onListen={this.onListen}>
+          onListen={this.onListen}
+          onAbort={this.onAbort}
+          onError={this.onNext}>
           {PlayStore.playingResources.map(item => (
             <source key={item.url} src={item.url} type={'audio/' + item.type} />
           ))}
@@ -181,7 +187,7 @@ class Player extends Component<{}, StateType> {
               onAfterChange={this.sliderOnAfterChange}
             />
           </div>
-          <div className={PlayerStyle.totalTime}>{fomatterTime(PlayStore.playingInfoDetail.dt)}</div>
+          <div className={PlayerStyle.totalTime}>{fomatterTime((this.state.duration * 1000) | 0)}</div>
           <div className={PlayerStyle['volume-control']}>
             <Icon type="sound" />
             <div className={PlayerStyle['volume-control-slider']}>

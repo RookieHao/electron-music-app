@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {observer} from 'mobx-react'
-import SvgIcon from '@components/svgIcon'
+import {SvgIcon} from '@components/svgIcon'
 import {PlayStore} from '@store/mobx'
 import Player from './player'
 import {MusicList} from './musicList'
@@ -28,6 +28,10 @@ class AppFooter extends Component<RouteComponentProps, {showList: boolean}> {
     document.removeEventListener('click', this.hide)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.hide)
+  }
+
   toggle = () => (this.state.showList ? this.hide() : this.show())
 
   render() {
@@ -39,7 +43,7 @@ class AppFooter extends Component<RouteComponentProps, {showList: boolean}> {
         </div>
         <div className={AppFooterStyle['music-list-total']} onClick={this.toggle}>
           <SvgIcon iconName="play-list"></SvgIcon>
-          <span className={AppFooterStyle['total-num']}>{PlayStore.playList.tracks.length}</span>
+          <span className={AppFooterStyle['total-num']}>{PlayStore.playList.length}</span>
         </div>
         <MusicList showList={showList} close={this.hide}></MusicList>
       </div>

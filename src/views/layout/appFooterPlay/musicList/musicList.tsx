@@ -6,7 +6,7 @@ import {observer} from 'mobx-react'
 import {PlayStore} from '@store/mobx'
 import {PlayingIcon} from '@components/playingIcon'
 import {Icon, Radio} from 'antd'
-import {PlaylistType, MusicInfoType} from '@declaration/music-list'
+import {MusicInfoType} from '@declaration/music-list'
 import {fomatterTime} from '@utils/utils'
 import MusicListStyle from './musicList.scss'
 
@@ -38,19 +38,22 @@ class MusicList extends Component<MusicListProps, MusicListState> {
     }
   }
 
-  playMusic = (playerId: number, playingIndex: number) => {
-    if (playerId !== PlayStore.playerId) {
-      PlayStore.setPlayMusic(playerId, playingIndex)
+  playMusic = (info: MusicInfoType) => {
+    let {radioValue} = this.state
+    if (info.id !== PlayStore.playerId) {
+      if (radioValue === 'A') {
+        PlayStore.setPlayMusicWithId(info.id)
+      } else {
+        PlayStore.pushToListWithInfo(info, true)
+      }
     }
   }
 
-  radioChange = (e: any) => {
-    this.setState({radioValue: e.target.value})
-  }
+  radioChange = (e: any) => this.setState({radioValue: e.target.value})
 
-  generatePlayList(musicList: PlaylistType) {
+  generatePlayList(musicList: MusicInfoType[]) {
     let {activeIndex, radioValue} = this.state
-    return musicList.tracks.map((item: MusicInfoType, index: number) => {
+    return musicList.map((item: MusicInfoType, index: number) => {
       return (
         <div
           key={item.id}
@@ -58,8 +61,8 @@ class MusicList extends Component<MusicListProps, MusicListState> {
             activeIndex === radioValue + index ? MusicListStyle.activeItem : ''
           }`}
           onClick={() => this.listItemClick(index)}
-          onDoubleClick={() => this.playMusic(item.id, index)}>
-          {PlayStore.playerId === item.id && (
+          onDoubleClick={() => this.playMusic(item)}>
+          {radioValue === 'A' && PlayStore.playerId === item.id && (
             <div className={MusicListStyle['playing-icon']}>
               <PlayingIcon />
             </div>
@@ -68,7 +71,7 @@ class MusicList extends Component<MusicListProps, MusicListState> {
           <div className={MusicListStyle['music-author']} title={item.ar.map(ai => ai.name).join('/')}>
             <span>{item.ar.map(ai => ai.name).join('/')}</span>
           </div>
-          <div title={musicList.name}>
+          <div title={'来源：' + item.source.name}>
             <span>
               <Icon type="link" />
             </span>
@@ -81,9 +84,7 @@ class MusicList extends Component<MusicListProps, MusicListState> {
 
   listContentClick = (event: any) => event.nativeEvent.stopImmediatePropagation()
 
-  listItemClick = (index: number) => {
-    this.setState({activeIndex: this.state.radioValue + index})
-  }
+  listItemClick = (index: number) => this.setState({activeIndex: this.state.radioValue + index})
 
   clearList = () => {
     let {radioValue} = this.state
@@ -94,7 +95,7 @@ class MusicList extends Component<MusicListProps, MusicListState> {
     const {showList, close} = this.props
     const {radioValue} = this.state
     let musicList = this.state.radioValue === 'A' ? PlayStore.playList : PlayStore.playPrevList
-    let total = musicList.tracks.length
+    let total = musicList.length
     return (
       <div>
         {showList && (

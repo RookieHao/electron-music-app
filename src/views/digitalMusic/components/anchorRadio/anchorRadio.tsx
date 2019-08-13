@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 
-export default class index extends Component {
+export default class AnchorRadio extends Component {
   render() {
     return <div>主播电台</div>
   }

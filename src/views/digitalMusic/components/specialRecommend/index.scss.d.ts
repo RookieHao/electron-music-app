@@ -4,6 +4,8 @@
 // Please do not change this file!
 interface CssExports {
   banners: string
+  'color-333': string
+  'color-888': string
   'exclusive-item-name': string
   'exclusive-list': string
   'exclusive-list-item': string
@@ -17,9 +19,11 @@ interface CssExports {
   'item-name': string
   'item-play-btn': string
   'item-right-top': string
+  'latest-item-img-box': string
   'latest-list': string
   'latest-list-group': string
   'latest-list-item': string
+  'latest-play-btn': string
   'mv-item-img-box': string
   'mv-item-name': string
   'mv-list': string

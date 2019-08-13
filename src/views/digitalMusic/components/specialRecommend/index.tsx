@@ -44,7 +44,7 @@ const RecommendedModules = [
   // },
 ]
 
-export default class index extends Component {
+export default class SpecialRecommend extends Component {
   render() {
     return (
       <div className={RecommendedStyle.special}>

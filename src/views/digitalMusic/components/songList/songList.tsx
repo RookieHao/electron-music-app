@@ -2,10 +2,10 @@
 
 import React, {Component} from 'react'
 
-export class index extends Component {
+class SongList extends Component {
   render() {
     return <div>song-list</div>
   }
 }
 
-export default index
+export default SongList

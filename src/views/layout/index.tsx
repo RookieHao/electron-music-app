@@ -2,8 +2,8 @@
 
 import React, {Component} from 'react'
 import LoginApi from '@api/login'
-import AppTopNav from './appTopNav'
-import AppLeftAside from './appLeftAside'
+import {AppTopNav} from './appTopNav'
+import {AppLeftAside} from './appLeftAside'
 import AppFooterPlay from './appFooterPlay'
 import layOutStyle from './styles/layOut.scss'
 
