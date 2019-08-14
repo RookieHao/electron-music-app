@@ -1,23 +1,33 @@
 /** @format */
 
 import {observable, action, runInAction} from 'mobx'
+import {remote} from 'electron'
 import {message} from 'antd'
 import commonAPI from '@api/common'
 import {musicResourceType, MusicInfoType} from '@declaration/music-list'
 
+let currentWindow: Electron.BrowserWindow = remote.getCurrentWindow()
 export class PlayType {
-  constructor() {
-    this.playPrevList = JSON.parse(localStorage.getItem('playPrevList') || '[]')
+  @observable listId: number | null
+  @observable playerStatus: boolean // 播放器状态
+  @observable playerId: number | null // 当前播放的音乐Id
+  @observable playingResources: musicResourceType // 当前播放音乐的资源
+  @observable playingIndex: number | null // 当前播放的音乐在列表playList中的位置
+  @observable playList: MusicInfoType[]
+  @observable playPrevList: MusicInfoType[]
+
+  constructor(initData: PlayType) {
+    this.listId = initData.listId || null
+    this.playerStatus = initData.playerStatus || false
+    this.playerId = initData.playerId || null
+    this.playingResources = initData.playingResources || []
+    this.playingIndex = initData.playingIndex || null
+    this.playList = initData.playList || []
+    this.playPrevList = initData.playPrevList || []
+    currentWindow.addListener('close', () => {
+      localStorage.setItem('cloud', JSON.stringify(this))
+    })
   }
-
-  @observable listId: number | null = null
-  @observable playerStatus: boolean = false // 播放器状态
-  @observable playerId: number | null = null // 当前播放的音乐Id
-  @observable playingResources: musicResourceType = [] // 当前播放音乐的资源
-  @observable playingIndex: number | null = 0 // 当前播放的音乐在列表playList中的位置
-  @observable playList: MusicInfoType[] = []
-  @observable playPrevList: MusicInfoType[] = []
-
   @action.bound // 通过歌单id查询歌曲列表
   async getPlayListDetail(id: number) {
     return await commonAPI.getPlayListDetail(id)
@@ -89,7 +99,6 @@ export class PlayType {
     let has = this.playPrevList.some(e => e.id === info.id)
     if (!has) {
       this.playPrevList.push(info)
-      localStorage.setItem('playPrevList', JSON.stringify(this.playPrevList))
     }
   }
 
@@ -200,4 +209,4 @@ export class PlayType {
     }
   }
 }
-export default new PlayType()
+export default new PlayType(JSON.parse(localStorage.getItem('cloud') || '{}'))

@@ -19,8 +19,8 @@ export default class Routers extends Component {
     return (
       <HashRouter>
         <Switch>
+          <Route path="/" exact render={() => <Redirect to="/digital-music/SpecialRecommend" />} />
           <LayOut>
-            <Route path="/" exact render={() => <Redirect to="/digital-music/SpecialRecommend" />} />
             <Route
               path="/digital-music/:activeKey"
               defaultParams={{activeKey: 'SpecialRecommend'}}
